@@ -1,0 +1,23 @@
+# Xcode
+DerivedData/
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/xcuserdata
+*.xcuserstate
+*.xcodeproj/xcuserdata
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Build
+build/
+*.ipa
+*.app
+
+# SwiftPM
+.build/
+Package.resolved
+
+# macOS Finder & System
+.DS_Store
+.idea/
