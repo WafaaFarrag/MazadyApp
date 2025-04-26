@@ -14,8 +14,11 @@ class ProfileViewController: BaseViewController {
     //@IBOutlet weak var profileTabsView: Segmentio!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
     // MARK: - Properties
     var viewModel: ProfileViewModel! // injected later
     private let disposeBag = DisposeBag()
@@ -39,9 +42,12 @@ class ProfileViewController: BaseViewController {
             .asDriver()
             .drive(onNext: { [weak self] user in
                 guard let self = self, let user = user else { return }
-                self.nameLabel.text = user.name
-                self.emailLabel.text = user.email
-                if let imageUrl = user.profileImage, let url = URL(string: imageUrl) {
+                nameLabel.text = user.name
+                userNameLabel.text = user.userName
+                locationLabel.text = "\(user.countryName), \(user.cityName )"
+                followersCountLabel.text = "\(user.followersCount)"
+                followingCountLabel.text = "\(user.followingCount)"
+                if let imageUrl = user.image, let url = URL(string: imageUrl) {
                     DispatchQueue.global().async {
                         if let data = try? Data(contentsOf: url) {
                             DispatchQueue.main.async {
