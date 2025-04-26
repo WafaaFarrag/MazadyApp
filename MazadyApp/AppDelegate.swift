@@ -18,11 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-
-        // Create viewModel
         let profileVM = AppDIContainer.shared.makeProfileViewModel()
 
-        // Load from Storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {
             fatalError("Could not instantiate ProfileViewController from Storyboard.")

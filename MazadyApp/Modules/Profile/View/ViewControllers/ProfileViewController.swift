@@ -47,12 +47,12 @@ class ProfileViewController: BaseViewController {
         containerCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         containerCollectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
         containerCollectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagsCollectionViewCell")
-        
+        containerCollectionView.register(UINib(nibName: "TagsHeaderView", bundle: nil),forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TagsHeaderView")
+
         // 2. Setup Data Source
         dataSource = RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>(
             configureCell: { [weak self] dataSource, collectionView, indexPath, item in
                 guard self != nil else { return UICollectionViewCell() }
-                
                 let section = dataSource.sectionModels[indexPath.section]
                 
                 switch section {
@@ -61,22 +61,38 @@ class ProfileViewController: BaseViewController {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
                     cell.configure(with: product)
                     return cell
-                    
+
                 case .adsSection(let ads):
                     let ad = ads[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdvertisementCollectionViewCell", for: indexPath) as! AdvertisementCollectionViewCell
                     cell.configure(with: ad)
                     return cell
-                    
+
                 case .tagsSection(let tags):
                     let tag = tags[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
-                     cell.configure(with: tag)
+                    cell.configure(with: tag)
                     return cell
+                }
+            },
+            
+            configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+                if kind == UICollectionView.elementKindSectionHeader {
+                    let section = dataSource.sectionModels[indexPath.section]
+                    switch section {
+                    case .tagsSection:
+                        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TagsHeaderView", for: indexPath) as! TagsHeaderView
+                        header.titleLabel.text = "Top Tags"
+                        return header
+                    default:
+                        return UICollectionReusableView()
+                    }
+                } else {
+                    return UICollectionReusableView()
                 }
             }
         )
-        
+
         containerCollectionView.collectionViewLayout = createLayout()
     }
     
@@ -160,6 +176,18 @@ class ProfileViewController: BaseViewController {
                 section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
                 section.interGroupSpacing = 8
                 section.orthogonalScrollingBehavior = .none
+                
+                // --- ADD HEADER ---
+                let headerSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(44)
+                )
+                let header = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top
+                )
+                section.boundarySupplementaryItems = [header]
 
                 return section
             }
