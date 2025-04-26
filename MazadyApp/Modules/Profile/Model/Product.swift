@@ -5,22 +5,25 @@
 //  Created by wafaa farrag on 25/04/2025.
 //
 
+
 import Foundation
 
 struct Product: Codable {
     let id: Int
     let name: String
+    let image: String
     let price: Double
-    let imageURL: String
-    let endDate: String?
-    let specialLabel: String?
+    let currency: String
+    let offer: Double?
+    let endDate: Double?
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
+        case image
         case price
-        case imageURL = "image_url"
+        case currency
+        case offer
         case endDate = "end_date"
-        case specialLabel = "special_label"
     }
 }

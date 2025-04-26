@@ -13,6 +13,6 @@ struct Advertisement: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id
-        case imageURL = "image_url"
+        case imageURL = "image"
     }
 }

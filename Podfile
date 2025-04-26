@@ -19,6 +19,7 @@ target 'MazadyApp' do
   # Network reachability
   pod 'ReachabilitySwift', '~> 5.1'
 
+  pod 'RxDataSources'
 
 
   # Lint (optional)

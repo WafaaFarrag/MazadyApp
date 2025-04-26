@@ -34,19 +34,22 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     
     func configure(with product: Product) {
-        // Set image
-        if let url = URL(string: product.imageURL) {
+        // Set Image
+        if let url = URL(string: product.image) {
             productImageView.load(url: url)
         }
         
+        // Set Name
         titleLabel.text = product.name
-        priceLabel.text = "\(product.price) EGP"
         
-        // Handle Old Price (special label)
-        if let oldPriceText = product.specialLabel, !oldPriceText.isEmpty {
+        // Set Price (with currency)
+        priceLabel.text = "\(product.price) \(product.currency)"
+        
+        // Handle Offer Price (Old Price if exists)
+        if let offer = product.offer {
             offerPriceLabel.isHidden = false
             let attributeString = NSAttributedString(
-                string: oldPriceText,
+                string: "\(offer) \(product.currency)",
                 attributes: [
                     .strikethroughStyle: NSUnderlineStyle.single.rawValue,
                     .foregroundColor: UIColor.red
@@ -57,14 +60,15 @@ class ProductCollectionViewCell: UICollectionViewCell {
             offerPriceLabel.isHidden = true
         }
         
-        // Handle Countdown
-        if let endDateString = product.endDate, let seconds = Double(endDateString) {
+        // Handle Countdown Timer
+        if let secondsLeft = product.endDate {
             timerStackView.isHidden = false
-            updateCountdown(secondsLeft: seconds)
+            updateCountdown(secondsLeft: secondsLeft)
         } else {
             timerStackView.isHidden = true
         }
     }
+
 
     func updateCountdown(secondsLeft: Double) {
         let totalSeconds = Int(secondsLeft)
