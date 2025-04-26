@@ -76,7 +76,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="120 EGP" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyD-U4-mqr" userLabel="120 EGP">
                                                 <rect key="frame" x="49.666666666666671" y="0.0" width="47.666666666666671" height="14"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                 <color key="textColor" name="redSecondColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -224,7 +224,8 @@
                 <outlet property="hoursLabel" destination="8S1-9i-v1N" id="INI-DA-36y"/>
                 <outlet property="lotStartsLabel" destination="M40-Ke-UxY" id="i7S-p6-lqs"/>
                 <outlet property="minutesLabel" destination="qfs-m5-hL5" id="Bgh-aM-RMB"/>
-                <outlet property="offerPriceLabel" destination="jyD-U4-mqr" id="SIu-9d-gkQ"/>
+                <outlet property="offerPriceLabel" destination="m0A-dg-PcD" id="Eqv-c2-phP"/>
+                <outlet property="oldPriceLabel" destination="jyD-U4-mqr" id="e7l-LJ-No0"/>
                 <outlet property="priceLabel" destination="qca-hO-GXf" id="mVd-ut-e3K"/>
                 <outlet property="productImageView" destination="MZM-VB-miI" id="dgE-Eb-VOr"/>
                 <outlet property="timerCountersStackView" destination="ul8-be-PcX" id="LxS-P3-ufA"/>

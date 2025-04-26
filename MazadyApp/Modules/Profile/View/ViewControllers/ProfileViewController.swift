@@ -41,7 +41,6 @@ class ProfileViewController: BaseViewController {
         self.viewModel = viewModel
     }
     private func setupCollectionView() {
-       // containerCollectionView.delegate = self
         
         // 1. Register cells
         containerCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
@@ -85,79 +84,80 @@ class ProfileViewController: BaseViewController {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, environment in
             guard let self = self else { return nil }
             let section = self.dataSource.sectionModels[sectionIndex]
-
+            
             switch section {
             case .productsSection:
-                let spacing: CGFloat = 8
+                let spacing: CGFloat = 0
                 let itemsPerRow: CGFloat = 3
-
+                
                 // Item
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .estimated(200)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-                // Group
-                let groupSize = NSCollectionLayoutSize(
+                item.contentInsets = .zero // No spacing
+                
+                // Group (Subgroup of 3 items)
+                let groupItemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .estimated(200)
                 )
                 let group = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: groupSize,
+                    layoutSize: groupItemSize,
                     subitem: item,
                     count: Int(itemsPerRow)
                 )
-                group.interItemSpacing = .fixed(spacing)
-
+                group.interItemSpacing = .fixed(spacing) // No spacing between columns
+                
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = spacing
-                section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
-
+                section.interGroupSpacing = spacing // No spacing between rows
+                section.contentInsets = .zero // No outer margin
+                
                 return section
-
+                
             case .adsSection:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(180)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+                
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(180)
                 )
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
+                
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
-
                 return section
-
+                
             case .tagsSection:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .estimated(100),
                     heightDimension: .absolute(40)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+                
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(40)
                 )
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.interItemSpacing = .fixed(8)
-
+                
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
                 section.orthogonalScrollingBehavior = .continuous
-
                 return section
             }
         }
     }
-
+    
+    
+    
     
     
     // MARK: - Binding
@@ -195,31 +195,3 @@ class ProfileViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
 }
-
-
-
-//extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let width = collectionView.frame.width
-//        let section = dataSource.sectionModels[indexPath.section]
-//
-//        switch section {
-//        case .productsSection:
-//            let spacing: CGFloat = 16
-//            let itemsPerRow: CGFloat = 3
-//            let totalSpacing = spacing * (itemsPerRow + 1)
-//            let itemWidth = (width - totalSpacing) / itemsPerRow
-//
-//            // ✅ FIX: width controlled, height zero to allow self-sizing
-//            return CGSize(width: itemWidth, height: 0)
-//            
-//        case .adsSection:
-//            return CGSize(width: width - 32, height: 180)
-//            
-//        case .tagsSection:
-//            return CGSize(width: 100, height: 40)
-//        }
-//    }
-//}

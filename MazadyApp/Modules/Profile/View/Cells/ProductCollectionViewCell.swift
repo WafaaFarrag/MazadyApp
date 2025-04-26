@@ -9,6 +9,7 @@ import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var oldPriceLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -48,13 +49,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
         if let offer = product.offer {
             containerOfferPriceStackView.isHidden = false
             let attributeString = NSAttributedString(
-                string: "\(offer) \(product.currency)",
+                string: "\(product.price) \(product.currency)",
                 attributes: [
                     .strikethroughStyle: NSUnderlineStyle.single.rawValue,
                     .foregroundColor: UIColor.red
                 ]
             )
-            offerPriceLabel.attributedText = attributeString
+            oldPriceLabel.attributedText = attributeString
+            offerPriceLabel.text = "\(offer) \(product.currency)"
         } else {
             containerOfferPriceStackView.isHidden = true
         }
