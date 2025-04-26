@@ -20,7 +20,7 @@ class APIManager {
         return provider.rx.request(target)
             .filterSuccessfulStatusCodes()
             .map(T.self)
-            .catchError { error in
+            .catch { error in
                 return Single<T>.error(NetworkError.map(error))
             }
     }
