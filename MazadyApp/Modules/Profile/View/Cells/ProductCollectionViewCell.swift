@@ -27,16 +27,19 @@ class ProductCollectionViewCell: UICollectionViewCell {
         setupUI()
     }
     
+
     private func setupUI() {
-    
         productImageView.contentMode = .scaleAspectFill
-        productImageView.layer.cornerRadius = 12
         productImageView.clipsToBounds = true
         offerPriceLabel.textColor = .red
-        
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
+
+        // 🔥 Add corner radius to the whole cell
+        contentView.layer.cornerRadius = 24
+        contentView.layer.masksToBounds = true
     }
+
     
     func configure(with product: Product) {
         if let url = URL(string: product.image) {

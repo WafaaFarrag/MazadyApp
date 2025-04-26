@@ -21,11 +21,13 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var containerCollectionView: UICollectionView!
+    
     // MARK: - Properties
     var viewModel: ProfileViewModel! // injected later
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
     
+  
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +36,7 @@ class ProfileViewController: BaseViewController {
         bindViewModel()
         
     }
-    
-    
+
     // MARK: - Setup
     func configure(with viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -75,8 +76,7 @@ class ProfileViewController: BaseViewController {
                 }
             }
         )
-        
-        // 3. Setup Self-Sizing Layout
+    
         containerCollectionView.collectionViewLayout = createLayout()
     }
     
@@ -87,37 +87,35 @@ class ProfileViewController: BaseViewController {
             
             switch section {
             case .productsSection:
-                let spacing: CGFloat = 0
                 let itemsPerRow: CGFloat = 3
-                
+                let columnSpacing: CGFloat = 8
+
                 // Item
                 let itemSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
+                    widthDimension: .fractionalWidth(1.0 / itemsPerRow),
                     heightDimension: .estimated(200)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = .zero // No spacing
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: columnSpacing / 2, bottom: 0, trailing: columnSpacing / 2)
                 
-                // Group (Subgroup of 3 items)
+
+                // Group
                 let groupItemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .estimated(200)
                 )
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: groupItemSize,
-                    subitem: item,
-                    count: Int(itemsPerRow)
+                    subitems: [item]
                 )
-                group.interItemSpacing = .fixed(spacing) // No spacing between columns
-                
+                group.interItemSpacing = .fixed(0)
+
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = spacing // No spacing between rows
-                section.contentInsets = .zero // No outer margin
-                
-                return section
-                
-            case .adsSection:
+                section.interGroupSpacing = 8
+                section.contentInsets = .zero
+
+                return section            case .adsSection:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
                     heightDimension: .absolute(180)
@@ -155,11 +153,7 @@ class ProfileViewController: BaseViewController {
             }
         }
     }
-    
-    
-    
-    
-    
+
     // MARK: - Binding
     private func bindViewModel() {
         viewModel.user
