@@ -254,7 +254,7 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="profileBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="NWh-7H-5bd" firstAttribute="centerY" secondItem="mXl-wH-Vpy" secondAttribute="centerY" id="2cL-XZ-97d"/>
                                     <constraint firstItem="NWh-7H-5bd" firstAttribute="height" secondItem="mXl-wH-Vpy" secondAttribute="height" id="CIo-Zl-t24"/>

@@ -34,20 +34,21 @@ class ProfileViewController: BaseViewController {
         bindViewModel()
         
     }
-        
-
-        // MARK: - Setup
+    
+    
+    // MARK: - Setup
     func configure(with viewModel: ProfileViewModel) {
         self.viewModel = viewModel
     }
-    
     private func setupCollectionView() {
-        containerCollectionView.delegate = self
+       // containerCollectionView.delegate = self
+        
+        // 1. Register cells
         containerCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         containerCollectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
         containerCollectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagsCollectionViewCell")
-
         
+        // 2. Setup Data Source
         dataSource = RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>(
             configureCell: { [weak self] dataSource, collectionView, indexPath, item in
                 guard self != nil else { return UICollectionViewCell() }
@@ -60,31 +61,103 @@ class ProfileViewController: BaseViewController {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
                     cell.configure(with: product)
                     return cell
+                    
                 case .adsSection(let ads):
                     let ad = ads[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdvertisementCollectionViewCell", for: indexPath) as! AdvertisementCollectionViewCell
-                   // cell.configure(with: ad)
+                    // cell.configure(with: ad)
                     return cell
+                    
                 case .tagsSection(let tags):
                     let tag = tags[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
-                   // cell.configure(with: tag)
+                    // cell.configure(with: tag)
                     return cell
                 }
             }
         )
         
+        // 3. Setup Self-Sizing Layout
         containerCollectionView.collectionViewLayout = createLayout()
     }
     
     private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        return layout
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, environment in
+            guard let self = self else { return nil }
+            let section = self.dataSource.sectionModels[sectionIndex]
+
+            switch section {
+            case .productsSection:
+                let spacing: CGFloat = 8
+                let itemsPerRow: CGFloat = 3
+
+                // Item
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(200)
+                )
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+                // Group
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(200)
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: groupSize,
+                    subitem: item,
+                    count: Int(itemsPerRow)
+                )
+                group.interItemSpacing = .fixed(spacing)
+
+                // Section
+                let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = spacing
+                section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+
+                return section
+
+            case .adsSection:
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(180)
+                )
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(180)
+                )
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+
+                let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+
+                return section
+
+            case .tagsSection:
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .estimated(100),
+                    heightDimension: .absolute(40)
+                )
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .absolute(40)
+                )
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                group.interItemSpacing = .fixed(8)
+
+                let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+                section.orthogonalScrollingBehavior = .continuous
+
+                return section
+            }
+        }
     }
-    
+
     
     
     // MARK: - Binding
@@ -123,22 +196,30 @@ class ProfileViewController: BaseViewController {
     }
 }
 
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width = collectionView.frame.width
-        let section = dataSource.sectionModels[indexPath.section]
-        
-        switch section {
-        case .productsSection:
-            let itemWidth = (width - 24) / 2 // 2 columns + spacing
-            return CGSize(width: itemWidth, height: itemWidth + 80)
-        case .adsSection:
-            return CGSize(width: width - 16, height: 180)
-        case .tagsSection:
-            return CGSize(width: 100, height: 40)
-        }
-    }
-}
 
+
+//extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let width = collectionView.frame.width
+//        let section = dataSource.sectionModels[indexPath.section]
+//
+//        switch section {
+//        case .productsSection:
+//            let spacing: CGFloat = 16
+//            let itemsPerRow: CGFloat = 3
+//            let totalSpacing = spacing * (itemsPerRow + 1)
+//            let itemWidth = (width - totalSpacing) / itemsPerRow
+//
+//            // ✅ FIX: width controlled, height zero to allow self-sizing
+//            return CGSize(width: itemWidth, height: 0)
+//            
+//        case .adsSection:
+//            return CGSize(width: width - 32, height: 180)
+//            
+//        case .tagsSection:
+//            return CGSize(width: 100, height: 40)
+//        }
+//    }
+//}
