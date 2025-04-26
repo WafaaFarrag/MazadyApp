@@ -8,10 +8,23 @@
 import UIKit
 
 class AdvertisementCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var adImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupUI()
     }
 
+    private func setupUI() {
+        adImageView.contentMode = .scaleAspectFill
+        adImageView.layer.cornerRadius = 12
+        adImageView.clipsToBounds = true
+    }
+
+    func configure(with ad: Advertisement) {
+        if let url = URL(string: ad.imageURL) {
+            adImageView.load(url: url) 
+        }
+    }
 }

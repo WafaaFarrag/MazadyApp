@@ -27,7 +27,7 @@ class ProfileViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
     
-  
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class ProfileViewController: BaseViewController {
         bindViewModel()
         
     }
-
+    
     // MARK: - Setup
     func configure(with viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -65,7 +65,7 @@ class ProfileViewController: BaseViewController {
                 case .adsSection(let ads):
                     let ad = ads[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdvertisementCollectionViewCell", for: indexPath) as! AdvertisementCollectionViewCell
-                    // cell.configure(with: ad)
+                    cell.configure(with: ad)
                     return cell
                     
                 case .tagsSection(let tags):
@@ -76,7 +76,7 @@ class ProfileViewController: BaseViewController {
                 }
             }
         )
-    
+        
         containerCollectionView.collectionViewLayout = createLayout()
     }
     
@@ -89,7 +89,7 @@ class ProfileViewController: BaseViewController {
             case .productsSection:
                 let itemsPerRow: CGFloat = 3
                 let columnSpacing: CGFloat = 8
-
+                
                 // Item
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0 / itemsPerRow),
@@ -98,7 +98,7 @@ class ProfileViewController: BaseViewController {
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: columnSpacing / 2, bottom: 0, trailing: columnSpacing / 2)
                 
-
+                
                 // Group
                 let groupItemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
@@ -109,27 +109,32 @@ class ProfileViewController: BaseViewController {
                     subitems: [item]
                 )
                 group.interItemSpacing = .fixed(0)
-
+                
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 8
                 section.contentInsets = .zero
-
-                return section            case .adsSection:
+                
+                return section
+                
+            case .adsSection:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(180)
+                    heightDimension: .absolute(140)
                 )
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
                 
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(180)
+                    heightDimension: .absolute(140)
                 )
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0)
+                section.interGroupSpacing = 8
+                
                 return section
                 
             case .tagsSection:
@@ -153,7 +158,7 @@ class ProfileViewController: BaseViewController {
             }
         }
     }
-
+    
     // MARK: - Binding
     private func bindViewModel() {
         viewModel.user

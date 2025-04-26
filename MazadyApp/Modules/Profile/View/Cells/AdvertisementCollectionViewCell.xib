@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,9 +17,45 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9e-j0-7Zt">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i5T-xr-OIq">
+                                <rect key="frame" x="-0.33333333333333215" y="-0.33333333333333215" width="50.666666666666657" height="50.666666666666657"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="21"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="profileBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="i5T-xr-OIq" firstAttribute="centerX" secondItem="n9e-j0-7Zt" secondAttribute="centerX" id="EN8-ld-XeT"/>
+                            <constraint firstItem="i5T-xr-OIq" firstAttribute="centerY" secondItem="n9e-j0-7Zt" secondAttribute="centerY" id="LjB-fh-7aw"/>
+                            <constraint firstItem="i5T-xr-OIq" firstAttribute="height" secondItem="n9e-j0-7Zt" secondAttribute="height" constant="0.90000000000000002" id="hgb-Rl-yvS"/>
+                            <constraint firstItem="i5T-xr-OIq" firstAttribute="width" secondItem="n9e-j0-7Zt" secondAttribute="width" constant="0.90000000000000002" id="xA8-Dc-9M8"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="n9e-j0-7Zt" secondAttribute="trailing" id="GuU-EV-10x"/>
+                <constraint firstItem="n9e-j0-7Zt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YJa-Tf-DQq"/>
+                <constraint firstItem="n9e-j0-7Zt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="e3Y-Hj-lQQ"/>
+                <constraint firstAttribute="bottom" secondItem="n9e-j0-7Zt" secondAttribute="bottom" id="rnb-j8-tE2"/>
+            </constraints>
+            <connections>
+                <outlet property="adImageView" destination="i5T-xr-OIq" id="aI4-BL-kMC"/>
+            </connections>
             <point key="canvasLocation" x="-53" y="20"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="profileBackgroundColor">
+            <color red="0.96470588235294119" green="0.95686274509803926" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

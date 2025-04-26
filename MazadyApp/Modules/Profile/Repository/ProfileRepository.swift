@@ -27,7 +27,8 @@ class ProfileRepository: BaseRepository, ProfileRepositoryProtocol {
     }
     
     func fetchAds() -> Single<[Advertisement]> {
-        return fetch(.getAds, as: [Advertisement].self)
+        return fetch(.getAds, as: AdvertisementsResponse.self)
+            .map { $0.advertisements }
     }
     
     func fetchTags() -> Single<[Tag]> {

@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct AdvertisementsResponse: Codable {
+    let advertisements: [Advertisement]
+}
+
 struct Advertisement: Codable {
     let id: Int
     let imageURL: String
