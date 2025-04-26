@@ -25,7 +25,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-4l-nQq">
                                 <rect key="frame" x="12" y="0.0" width="58" height="50"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="blackTextPrimaryColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -64,12 +64,16 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="containerView" destination="Xm7-Pw-b4k" id="vXz-V7-ftP"/>
                 <outlet property="titleLabel" destination="Ihb-4l-nQq" id="jej-m8-bh6"/>
             </connections>
             <point key="canvasLocation" x="-29.007633587786259" y="19.718309859154932"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="blackTextPrimaryColor">
+            <color red="0.21176470588235294" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="grayTextScondColor">
             <color red="0.6588235294117647" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

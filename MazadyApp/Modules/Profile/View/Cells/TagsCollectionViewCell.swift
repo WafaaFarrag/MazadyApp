@@ -8,6 +8,7 @@
 import UIKit
 
 class TagsCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -21,9 +22,8 @@ class TagsCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         
         contentView.layer.cornerRadius = 9
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
-        contentView.backgroundColor = UIColor.systemGray6
+        contentView.layer.borderWidth = 0.5
+        contentView.layer.borderColor = UIColor.lightGray2.cgColor
         contentView.clipsToBounds = true
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
         titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -39,7 +39,8 @@ class TagsCollectionViewCell: UICollectionViewCell {
         didSet {
             contentView.layer.borderColor = isSelected ? UIColor.orange.cgColor : UIColor.lightGray.cgColor
             contentView.backgroundColor = isSelected ? UIColor.orange.withAlphaComponent(0.1) : .white
-            titleLabel.textColor = isSelected ? .orange : .black
+            titleLabel.textColor = isSelected ? .orangeSecond : .blackTextPrimary
+            containerView.backgroundColor = isSelected ? .orangePrimary : .white
         }
     }
 }
