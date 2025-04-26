@@ -68,6 +68,22 @@ class ProfileViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
+    func searchProducts(by name: String) {
+           isLoading.accept(true)
+           fetchProductsUseCase.execute(name: name)
+               .observe(on: MainScheduler.instance)
+               .subscribe { [weak self] result in
+                   switch result {
+                   case .success(let products):
+                       self?.products.accept(products)
+                   case .failure(let error):
+                       self?.handleError(error as! NetworkError)
+                   }
+                   self?.isLoading.accept(false)
+               }
+               .disposed(by: disposeBag)
+       }
+    
     func loadAds() {
         isLoading.accept(true)
         fetchAdsUseCase.execute()

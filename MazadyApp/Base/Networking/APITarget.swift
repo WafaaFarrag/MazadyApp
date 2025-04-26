@@ -13,6 +13,7 @@ enum APITarget {
     case getProducts
     case getTags
     case getAds
+    case searchProducts(name: String)
 }
 
 extension APITarget: TargetType {
@@ -23,9 +24,10 @@ extension APITarget: TargetType {
     var path: String {
         switch self {
         case .getUser: return "/user"
-        case .getProducts: return "/products"
+        case .getProducts, .searchProducts: return "/products"
         case .getTags: return "/tags"
         case .getAds: return "/advertisements"
+            
         }
     }
 
@@ -34,9 +36,14 @@ extension APITarget: TargetType {
     }
 
     var task: Task {
-        return .requestPlain
+        switch self {
+        case .searchProducts(let name):
+            return .requestParameters(parameters: ["name": name], encoding: URLEncoding.default)
+        default:
+            return .requestPlain
+        }
     }
-
+    
     var headers: [String : String]? {
         return ["Content-Type": "application/json"]
     }

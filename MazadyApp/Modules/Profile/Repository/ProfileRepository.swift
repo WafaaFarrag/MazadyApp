@@ -10,6 +10,7 @@ import RxSwift
 
 protocol ProfileRepositoryProtocol {
     func fetchUserProfile() -> Single<User>
+    func fetchProducts(name: String) -> Single<[Product]> 
     func fetchProducts() -> Single<[Product]>
     func fetchAds() -> Single<[Advertisement]>
     func fetchTags() -> Single<[Tag]>
@@ -20,6 +21,10 @@ class ProfileRepository: BaseRepository, ProfileRepositoryProtocol {
     
     func fetchUserProfile() -> Single<User> {
         return fetch(.getUser, as: User.self)
+    }
+    
+    func fetchProducts(name: String) -> Single<[Product]> {
+        return fetch(.searchProducts(name: name), as: [Product].self)
     }
     
     func fetchProducts() -> Single<[Product]> {
