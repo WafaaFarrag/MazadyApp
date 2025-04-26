@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import RxSwift
 
-
 class ProfileViewController: BaseViewController {
     // MARK: - Outlets
+    //@IBOutlet weak var profileTabsView: Segmentio!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -23,6 +23,7 @@ class ProfileViewController: BaseViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         bindViewModel()
         viewModel.loadUserProfile()
     }
@@ -53,3 +54,7 @@ class ProfileViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
 }
+
+
+
+
