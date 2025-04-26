@@ -27,15 +27,43 @@ class ProductCollectionViewCell: UICollectionViewCell {
         setupUI()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        // Reset labels
+        daysLabel.text = ""
+        hoursLabel.text = ""
+        minutesLabel.text = ""
+        titleLabel.text = ""
+        priceLabel.text = ""
+        offerPriceLabel.attributedText = nil
+        productImageView.image = nil
+        
+        // Reset hidden states
+        timerStackView.isHidden = true
+        containerOfferPriceStackView.isHidden = true
+    }
+
+
 
     private func setupUI() {
         productImageView.contentMode = .scaleAspectFill
+        productImageView.layer.cornerRadius = 12
         productImageView.clipsToBounds = true
         offerPriceLabel.textColor = .red
+
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
-        contentView.layer.cornerRadius = 24
-        contentView.layer.masksToBounds = true
+
+        containerOfferPriceStackView.setContentHuggingPriority(.required, for: .vertical)
+        containerOfferPriceStackView.isHidden = true // Initially
+        timerStackView.setContentHuggingPriority(.required, for: .vertical)
+        timerStackView.isHidden = true // Initially
+
+        containerOfferPriceStackView.isHidden = true
+        timerStackView.isHidden = true
+        containerOfferPriceStackView.isUserInteractionEnabled = false
+        timerStackView.isUserInteractionEnabled = false
     }
 
     
