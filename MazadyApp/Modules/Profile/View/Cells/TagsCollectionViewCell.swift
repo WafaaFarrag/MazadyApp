@@ -16,22 +16,30 @@ class TagsCollectionViewCell: UICollectionViewCell {
         setupUI()
     }
     
+
+    
     private func setupUI() {
         
-        contentView.layer.cornerRadius = 16
+        contentView.layer.cornerRadius = 9
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.lightGray.cgColor
         contentView.backgroundColor = UIColor.systemGray6
         contentView.clipsToBounds = true
-
-        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        titleLabel.textColor = .darkGray
-        titleLabel.textAlignment = .center
+        titleLabel.setContentHuggingPriority(.required, for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         titleLabel.numberOfLines = 1
         titleLabel.adjustsFontSizeToFitWidth = true
     }
     
     func configure(with tag: Tag) {
         titleLabel.text = tag.name
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            contentView.layer.borderColor = isSelected ? UIColor.orange.cgColor : UIColor.lightGray.cgColor
+            contentView.backgroundColor = isSelected ? UIColor.orange.withAlphaComponent(0.1) : .white
+            titleLabel.textColor = isSelected ? .orange : .black
+        }
     }
 }

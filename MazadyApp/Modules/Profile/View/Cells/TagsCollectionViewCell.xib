@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagsCollectionViewCell" id="gTV-IL-0wX" customClass="TagsCollectionViewCell" customModule="MazadyApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="82" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="82" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xm7-Pw-b4k">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="82" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-4l-nQq">
-                                <rect key="frame" x="10.333333333333334" y="18" width="29.666666666666664" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-4l-nQq">
+                                <rect key="frame" x="12" y="0.0" width="58" height="50"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,12 +31,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ihb-4l-nQq" firstAttribute="centerX" secondItem="Xm7-Pw-b4k" secondAttribute="centerX" id="59g-rx-Yve"/>
-                            <constraint firstItem="Ihb-4l-nQq" firstAttribute="centerY" secondItem="Xm7-Pw-b4k" secondAttribute="centerY" id="B3M-Fc-oPc"/>
+                            <constraint firstAttribute="trailing" secondItem="Ihb-4l-nQq" secondAttribute="trailing" constant="12" id="2nq-oM-1Gb"/>
+                            <constraint firstItem="Ihb-4l-nQq" firstAttribute="top" secondItem="Xm7-Pw-b4k" secondAttribute="top" id="cAU-oq-SvX"/>
+                            <constraint firstAttribute="bottom" secondItem="Ihb-4l-nQq" secondAttribute="bottom" id="qPr-tH-RR6"/>
+                            <constraint firstItem="Ihb-4l-nQq" firstAttribute="leading" secondItem="Xm7-Pw-b4k" secondAttribute="leading" constant="12" id="ssH-iC-3RU"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="9"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                <color key="value" name="grayTextScondColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -48,13 +57,22 @@
                 <constraint firstAttribute="bottom" secondItem="Xm7-Pw-b4k" secondAttribute="bottom" id="gbY-fq-fI7"/>
                 <constraint firstItem="Xm7-Pw-b4k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wqi-BR-mgl"/>
             </constraints>
+            <size key="customSize" width="82" height="50"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="9"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="titleLabel" destination="Ihb-4l-nQq" id="jej-m8-bh6"/>
             </connections>
-            <point key="canvasLocation" x="-53" y="20"/>
+            <point key="canvasLocation" x="-29.007633587786259" y="19.718309859154932"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="grayTextScondColor">
+            <color red="0.6588235294117647" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
