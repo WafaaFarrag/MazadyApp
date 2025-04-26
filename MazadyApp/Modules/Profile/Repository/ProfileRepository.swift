@@ -32,6 +32,7 @@ class ProfileRepository: BaseRepository, ProfileRepositoryProtocol {
     }
     
     func fetchTags() -> Single<[Tag]> {
-        return fetch(.getTags, as: [Tag].self)
+        return fetch(.getTags, as: TagsResponse.self)
+            .map { $0.tags }
     }
 }

@@ -7,6 +7,9 @@
 
 import Foundation
 
+struct TagsResponse: Codable {
+    let tags: [Tag]
+}
 
 struct Tag: Codable {
     let id: Int

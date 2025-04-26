@@ -71,7 +71,7 @@ class ProfileViewController: BaseViewController {
                 case .tagsSection(let tags):
                     let tag = tags[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
-                    // cell.configure(with: tag)
+                     cell.configure(with: tag)
                     return cell
                 }
             }

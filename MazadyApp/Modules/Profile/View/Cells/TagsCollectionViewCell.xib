@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,9 +17,46 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xm7-Pw-b4k">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihb-4l-nQq">
+                                <rect key="frame" x="10.333333333333334" y="18" width="29.666666666666664" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ihb-4l-nQq" firstAttribute="centerX" secondItem="Xm7-Pw-b4k" secondAttribute="centerX" id="59g-rx-Yve"/>
+                            <constraint firstItem="Ihb-4l-nQq" firstAttribute="centerY" secondItem="Xm7-Pw-b4k" secondAttribute="centerY" id="B3M-Fc-oPc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="9"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Xm7-Pw-b4k" secondAttribute="trailing" id="L2S-jo-q13"/>
+                <constraint firstItem="Xm7-Pw-b4k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cMX-h0-ugc"/>
+                <constraint firstAttribute="bottom" secondItem="Xm7-Pw-b4k" secondAttribute="bottom" id="gbY-fq-fI7"/>
+                <constraint firstItem="Xm7-Pw-b4k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wqi-BR-mgl"/>
+            </constraints>
+            <connections>
+                <outlet property="titleLabel" destination="Ihb-4l-nQq" id="jej-m8-bh6"/>
+            </connections>
             <point key="canvasLocation" x="-53" y="20"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
