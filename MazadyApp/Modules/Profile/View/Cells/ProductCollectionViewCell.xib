@@ -217,6 +217,18 @@
                 <constraint firstAttribute="trailing" secondItem="dju-Y2-CKa" secondAttribute="trailing" id="V8E-4V-X8O"/>
             </constraints>
             <size key="customSize" width="166" height="409"/>
+            <connections>
+                <outlet property="daysLabel" destination="xVF-lS-sju" id="OgS-Ga-dao"/>
+                <outlet property="hoursLabel" destination="8S1-9i-v1N" id="INI-DA-36y"/>
+                <outlet property="lotStartsLabel" destination="M40-Ke-UxY" id="i7S-p6-lqs"/>
+                <outlet property="minutesLabel" destination="qfs-m5-hL5" id="Bgh-aM-RMB"/>
+                <outlet property="offerPriceLabel" destination="jyD-U4-mqr" id="SIu-9d-gkQ"/>
+                <outlet property="priceLabel" destination="qca-hO-GXf" id="mVd-ut-e3K"/>
+                <outlet property="productImageView" destination="MZM-VB-miI" id="dgE-Eb-VOr"/>
+                <outlet property="timerCountersStackView" destination="ul8-be-PcX" id="LxS-P3-ufA"/>
+                <outlet property="timerStackView" destination="7sr-nq-8Rp" id="aK6-F2-kjI"/>
+                <outlet property="titleLabel" destination="k0L-Xn-JYC" id="KO5-wa-AcR"/>
+            </connections>
             <point key="canvasLocation" x="25.954198473282442" y="128.52112676056339"/>
         </collectionViewCell>
     </objects>
