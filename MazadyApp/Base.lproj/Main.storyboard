@@ -199,6 +199,9 @@
                                                         <integer key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hqf-4l-TAQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="redPrimaryColor"/>
@@ -296,6 +299,7 @@
                         <outlet property="locationLabel" destination="35p-yd-JmJ" id="gvo-9g-SxT"/>
                         <outlet property="nameLabel" destination="r9C-bP-oDV" id="MGW-yF-DoM"/>
                         <outlet property="profileImageView" destination="3GV-Q9-7hN" id="e8N-Ro-LAk"/>
+                        <outlet property="searchTextField" destination="FdY-NG-bqd" id="Fmx-yU-JuA"/>
                         <outlet property="userNameLabel" destination="BhG-S2-kJP" id="WeE-63-NJ9"/>
                     </connections>
                 </viewController>

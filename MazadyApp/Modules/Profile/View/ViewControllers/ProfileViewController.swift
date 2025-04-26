@@ -13,6 +13,8 @@ import RxDataSources
 class ProfileViewController: BaseViewController {
     // MARK: - Outlets
     //@IBOutlet weak var profileTabsView: Segmentio!
+    @IBOutlet weak var searchTextField: UITextField!
+  
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -22,6 +24,15 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var containerCollectionView: UICollectionView!
     
+    @IBAction func searchBtnAction(_ sender: Any) {
+        guard let keyword = searchTextField.text, !keyword.isEmpty else {
+            return
+        }
+        
+        viewModel.searchProducts(by: keyword)
+        searchTextField.resignFirstResponder()
+        
+    }
     // MARK: - Properties
     var viewModel: ProfileViewModel! // injected later
     private let disposeBag = DisposeBag()
@@ -33,6 +44,7 @@ class ProfileViewController: BaseViewController {
         super.viewDidLoad()
         viewModel.loadAllData()
         setupCollectionView()
+        setupView()
         bindViewModel()
         
     }
@@ -40,6 +52,11 @@ class ProfileViewController: BaseViewController {
     // MARK: - Setup
     func configure(with viewModel: ProfileViewModel) {
         self.viewModel = viewModel
+    }
+    
+    private func setupView() {
+        searchTextField.delegate = self
+        setupSearchFieldListener()
     }
     private func setupCollectionView() {
         
@@ -228,4 +245,25 @@ class ProfileViewController: BaseViewController {
             .bind(to: containerCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let keyword = textField.text, !keyword.isEmpty else { return true }
+        
+        viewModel.searchProducts(by: keyword)
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    private func setupSearchFieldListener() {
+        searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text, text.isEmpty {
+            viewModel.loadProducts()
+        }
+    }
+
 }
