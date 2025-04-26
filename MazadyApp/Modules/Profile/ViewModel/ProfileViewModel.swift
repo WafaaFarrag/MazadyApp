@@ -60,7 +60,6 @@ class ProfileViewModel: BaseViewModel {
                 switch result {
                 case .success(let products):
                     self?.products.accept(products)
-                    print("hhhhh\(products[0])")
                 case .failure(let error):
                     self?.handleError(error as! NetworkError)
                 }

@@ -29,9 +29,10 @@ class ProfileViewController: BaseViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.loadAllData()
         setupCollectionView()
         bindViewModel()
-        viewModel.loadAllData()
+        
     }
         
 
@@ -41,9 +42,11 @@ class ProfileViewController: BaseViewController {
     }
     
     private func setupCollectionView() {
+        containerCollectionView.delegate = self
         containerCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
-        containerCollectionView.register(UINib(nibName: "AdCell", bundle: nil), forCellWithReuseIdentifier: "AdCell")
-        containerCollectionView.register(UINib(nibName: "TagCell", bundle: nil), forCellWithReuseIdentifier: "TagCell")
+        containerCollectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
+        containerCollectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagsCollectionViewCell")
+
         
         dataSource = RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>(
             configureCell: { [weak self] dataSource, collectionView, indexPath, item in
