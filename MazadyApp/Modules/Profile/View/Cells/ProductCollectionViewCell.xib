@@ -102,9 +102,9 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zuz-9C-Wwn">
                                                         <rect key="frame" x="10.666666666666668" y="16.999999999999996" width="21" height="33.666666666666657"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVF-lS-sju">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVF-lS-sju">
                                                                 <rect key="frame" x="0.0" y="0.0" width="21" height="16.666666666666668"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
                                                                 <color key="textColor" name="orangeSecondColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -119,12 +119,16 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="orangePrimaryColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Odd-tA-RrD" secondAttribute="height" multiplier="0.63" id="mP4-31-dls"/>
                                                     <constraint firstItem="zuz-9C-Wwn" firstAttribute="width" secondItem="Odd-tA-RrD" secondAttribute="width" multiplier="0.5" id="mZX-dI-d5o"/>
                                                     <constraint firstItem="zuz-9C-Wwn" firstAttribute="height" secondItem="Odd-tA-RrD" secondAttribute="height" multiplier="0.5" id="mhN-tv-BOu"/>
                                                     <constraint firstItem="zuz-9C-Wwn" firstAttribute="centerX" secondItem="Odd-tA-RrD" secondAttribute="centerX" id="vUQ-oh-hrH"/>
                                                     <constraint firstItem="zuz-9C-Wwn" firstAttribute="centerY" secondItem="Odd-tA-RrD" secondAttribute="centerY" id="xt0-in-ny7"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Ex-aTc">
                                                 <rect key="frame" x="50.333333333333329" y="0.0" width="42.333333333333329" height="67.333333333333329"/>
@@ -132,9 +136,9 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2CZ-Bu-coj">
                                                         <rect key="frame" x="10.666666666666671" y="16.999999999999996" width="21" height="33.666666666666657"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S1-9i-v1N">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="23" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S1-9i-v1N">
                                                                 <rect key="frame" x="0.0" y="0.0" width="21" height="16.666666666666668"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
                                                                 <color key="textColor" name="orangeSecondColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -154,6 +158,11 @@
                                                     <constraint firstItem="2CZ-Bu-coj" firstAttribute="centerX" secondItem="gQu-Ex-aTc" secondAttribute="centerX" id="FGF-7X-r03"/>
                                                     <constraint firstItem="2CZ-Bu-coj" firstAttribute="height" secondItem="gQu-Ex-aTc" secondAttribute="height" multiplier="0.5" id="Fga-LI-8qK"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-W4-0Am">
                                                 <rect key="frame" x="100.66666666666667" y="0.0" width="42.333333333333329" height="67.333333333333329"/>
@@ -161,9 +170,9 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uiN-WN-qlc">
                                                         <rect key="frame" x="13.666666666666671" y="18" width="15" height="31.333333333333329"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfs-m5-hL5">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="5" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfs-m5-hL5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="15.666666666666666"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
                                                                 <color key="textColor" name="orangeSecondColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -183,6 +192,11 @@
                                                     <constraint firstItem="uiN-WN-qlc" firstAttribute="centerX" secondItem="wz0-W4-0Am" secondAttribute="centerX" id="Ovq-hi-RHo"/>
                                                     <constraint firstItem="uiN-WN-qlc" firstAttribute="height" secondItem="wz0-W4-0Am" secondAttribute="height" multiplier="0.462366" id="trU-KE-arc"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                     </stackView>

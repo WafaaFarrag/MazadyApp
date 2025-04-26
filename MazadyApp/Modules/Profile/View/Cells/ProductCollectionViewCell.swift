@@ -34,8 +34,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         offerPriceLabel.textColor = .red
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
-
-        // 🔥 Add corner radius to the whole cell
         contentView.layer.cornerRadius = 24
         contentView.layer.masksToBounds = true
     }
@@ -78,8 +76,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         let hours = (totalSeconds % (24 * 3600)) / 3600
         let minutes = (totalSeconds % 3600) / 60
 
-        daysLabel.text = "\(days) D"
-        hoursLabel.text = "\(hours) H"
-        minutesLabel.text = "\(minutes) M"
+        daysLabel.text = "\(days)"
+        hoursLabel.text = "\(hours)"
+        minutesLabel.text = "\(minutes)"
     }
 }
