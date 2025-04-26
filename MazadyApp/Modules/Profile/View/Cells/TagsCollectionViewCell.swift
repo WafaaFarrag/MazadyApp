@@ -8,8 +8,8 @@
 import UIKit
 
 class TagsCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
@@ -17,10 +17,15 @@ class TagsCollectionViewCell: UICollectionViewCell {
         setupUI()
     }
     
+    override func prepareForReuse() {
+          super.prepareForReuse()
+          contentView.layer.borderColor = UIColor.lightGray2.cgColor
+          contentView.backgroundColor = .white
+          titleLabel.textColor = .blackTextPrimary
+      }
 
     
     private func setupUI() {
-        
         contentView.layer.cornerRadius = 9
         contentView.layer.borderWidth = 0.5
         contentView.layer.borderColor = UIColor.lightGray2.cgColor
@@ -28,7 +33,7 @@ class TagsCollectionViewCell: UICollectionViewCell {
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
         titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         titleLabel.numberOfLines = 1
-        titleLabel.adjustsFontSizeToFitWidth = true
+        //titleLabel.adjustsFontSizeToFitWidth = true
     }
     
     func configure(with tag: Tag) {
