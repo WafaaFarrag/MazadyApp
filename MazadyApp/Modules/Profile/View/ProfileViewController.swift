@@ -19,6 +19,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var containerCollectionView: UICollectionView!
     // MARK: - Properties
     var viewModel: ProfileViewModel! // injected later
     private let disposeBag = DisposeBag()
