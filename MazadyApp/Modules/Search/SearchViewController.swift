@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
 
     private let searchBar = UISearchBar()
     private let messageLabel = UILabel()

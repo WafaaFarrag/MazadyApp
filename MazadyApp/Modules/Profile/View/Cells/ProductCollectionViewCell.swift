@@ -38,7 +38,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
         priceLabel.text = ""
         offerPriceLabel.attributedText = nil
         oldPriceLabel.attributedText = nil
-        productImageView.image = nil
+        // Cancel any image download in progress
+        productImageView.kf.cancelDownloadTask()
+        
+        // Reset image properly
+        productImageView.image = UIImage(named: "product")
         
         timerStackView.isHidden = true
         containerOfferPriceStackView.isHidden = true
@@ -79,6 +83,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     guard let self = self else { return }
                     self.productImageView.layer.cornerRadius = 20
                     self.productImageView.clipsToBounds = true
+                    
                 }
             )
         } else {
