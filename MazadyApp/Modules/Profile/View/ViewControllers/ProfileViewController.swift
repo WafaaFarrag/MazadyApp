@@ -65,7 +65,7 @@ class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         updateLayoutDirectionIfNeeded()
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
     }
@@ -75,25 +75,21 @@ class ProfileViewController: BaseViewController {
     }
     
     // MARK: - Setup
+
     private func setupView() {
+        view.semanticContentAttribute = LanguageManager.shared.currentLanguage == .arabic ? .forceRightToLeft : .forceLeftToRight
         updateTexts()
         updateLayoutDirectionIfNeeded()
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
         searchTextField.delegate = self
         setupSearchFieldListener()
+ 
+        
     }
+
     
-//    private func adjustSearchIconDirection() {
-//        if UIView.userInterfaceLayoutDirection(for: view.semanticContentAttribute) == .rightToLeft {
-//            searchIconImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
-//            searchIconImageView.semanticContentAttribute = .forceRightToLeft
-//        } else {
-//            searchIconImageView.transform = .identity
-//            searchIconImageView.semanticContentAttribute = .forceLeftToRight
-//        }
-//    }
-//    
     func updateLayoutDirectionIfNeeded() {
+        viewModel.selectedTabIndex.accept(0)
         let currentLanguage = LanguageManager.shared.currentLanguage
         switch currentLanguage {
         case .english:
@@ -101,9 +97,8 @@ class ProfileViewController: BaseViewController {
         case .arabic:
             searchIconImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
         }
+        
     }
-
-
     
     @objc private func languageDidChange() {
         updateTexts()
@@ -128,7 +123,7 @@ class ProfileViewController: BaseViewController {
                 self.nameLabel.text = user.name
                 self.userNameLabel.text = user.userName
                 self.locationLabel.text = "\(user.countryName), \(user.cityName)"
-
+                
                 followersCountLabel.text = user.followersCount.localizedString()
                 followingCountLabel.text = user.followingCount.localizedString()
                 
@@ -219,31 +214,30 @@ class ProfileViewController: BaseViewController {
     }
     
     private func updateTabsUI(to tabIndex: Int) {
-        [productsButton, reviewsButton, followersButton].enumerated().forEach { index, button in
+        let buttons = [productsButton, reviewsButton, followersButton]
+
+        for (index, button) in buttons.enumerated() {
+            guard let button = button else { return }
             button.setTitleColor(index == tabIndex ? .redPrimary : .gray, for: .normal)
         }
         
         let buttonWidth = view.frame.width / 3
         let padding: CGFloat = 20
-        let isRTL = UIView.userInterfaceLayoutDirection(for: view.semanticContentAttribute) == .rightToLeft
-
-        var leading: CGFloat
-        if isRTL {
-            leading = (view.frame.width - (CGFloat(tabIndex + 1) * buttonWidth)) + (tabIndex == 2 ? -padding : 0)
-        } else {
-            leading = CGFloat(tabIndex) * buttonWidth + (tabIndex == 0 ? padding : 0)
+        
+        var leading = CGFloat(tabIndex) * buttonWidth
+        if tabIndex == 0 {
+            leading += padding
         }
 
         underlineLeadingConstraint.constant = leading
-        UIView.animate(withDuration: 0.3) { self.view.layoutIfNeeded() }
 
-        
-        underlineLeadingConstraint.constant = leading
-        
+        // Animate underline movement
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
+
+
     
     private func presentLanguageSheet() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

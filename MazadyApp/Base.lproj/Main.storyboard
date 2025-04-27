@@ -203,7 +203,7 @@
                                     <constraint firstItem="3GV-Q9-7hN" firstAttribute="width" secondItem="Qu1-Fy-cvH" secondAttribute="width" multiplier="0.25" id="qgn-lL-Nda"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gh3-xv-5p9">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gh3-xv-5p9" userLabel="topTabStackView">
                                 <rect key="frame" x="0.0" y="403.66666666666669" width="393" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6q-No-JFj">
