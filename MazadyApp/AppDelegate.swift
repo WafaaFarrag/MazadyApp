@@ -49,5 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           },
                           completion: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
+    }
 }
 

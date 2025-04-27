@@ -72,6 +72,10 @@ class ProfileViewController: BaseViewController {
         viewModel.loadAllData()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
+    }
+    
     // MARK: - Setup
     func configure(with viewModel: ProfileViewModel) {
         self.viewModel = viewModel

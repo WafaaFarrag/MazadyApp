@@ -20,6 +20,10 @@ class MainTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
+    }
+    
     // MARK: - Setup Tabs
     private func setupViewControllers() {
         viewControllers = [
