@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -322,6 +323,95 @@
             </objects>
             <point key="canvasLocation" x="-149.61832061068702" y="-118.30985915492958"/>
         </scene>
+        <!--Products View Controller-->
+        <scene sceneID="EK1-OX-GKa">
+            <objects>
+                <viewController id="Xwd-3X-O8I" customClass="ProductsViewController" customModule="MazadyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IGL-El-c08">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17X-Oi-WMI" userLabel="ScrollableContentView">
+                                <rect key="frame" x="20" y="0.0" width="353" height="852"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZVj-dz-aUe">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="852"/>
+                                        <color key="backgroundColor" name="profileBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="373-io-LI5">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cd2-5A-RVy">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="03a-Pk-Ksc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                                <color key="backgroundColor" name="profileBackgroundColor"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" name="profileBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ZVj-dz-aUe" firstAttribute="centerY" secondItem="17X-Oi-WMI" secondAttribute="centerY" id="9TQ-O1-JcS"/>
+                                    <constraint firstItem="ZVj-dz-aUe" firstAttribute="width" secondItem="17X-Oi-WMI" secondAttribute="width" id="OmD-1h-3XG"/>
+                                    <constraint firstItem="ZVj-dz-aUe" firstAttribute="height" secondItem="17X-Oi-WMI" secondAttribute="height" id="XR4-rq-bpQ"/>
+                                    <constraint firstItem="ZVj-dz-aUe" firstAttribute="centerX" secondItem="17X-Oi-WMI" secondAttribute="centerX" id="g4q-oT-sp6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="g7Z-Fu-bgO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="17X-Oi-WMI" firstAttribute="top" secondItem="IGL-El-c08" secondAttribute="top" id="AD5-4Q-tPI"/>
+                            <constraint firstItem="17X-Oi-WMI" firstAttribute="leading" secondItem="g7Z-Fu-bgO" secondAttribute="leading" constant="20" id="Me8-rb-GZM"/>
+                            <constraint firstAttribute="bottom" secondItem="17X-Oi-WMI" secondAttribute="bottom" id="ZXd-no-pUA"/>
+                            <constraint firstItem="g7Z-Fu-bgO" firstAttribute="trailing" secondItem="17X-Oi-WMI" secondAttribute="trailing" constant="20" id="tmx-WQ-3I7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ZVj-dz-aUe" id="dsm-p1-nPe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2N-Ma-1GK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="201"/>
+        </scene>
+        <!--Reviews View Controller-->
+        <scene sceneID="l7v-eD-Soz">
+            <objects>
+                <viewController storyboardIdentifier="ReviewsViewController" id="prV-Fj-82g" customClass="ReviewsViewController" customModule="MazadyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="980-45-rNg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5y5-fl-987"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A7c-AD-vEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="201"/>
+        </scene>
+        <!--Followers View Controller-->
+        <scene sceneID="3Ni-TM-vTt">
+            <objects>
+                <viewController storyboardIdentifier="FollowersViewController" id="ewc-Sn-QET" customClass="FollowersViewController" customModule="MazadyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zGO-QS-EP7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="CuO-VC-7p9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a0K-sg-5OP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="201"/>
+        </scene>
     </scenes>
     <resources>
         <image name="followers" width="24" height="24"/>
@@ -344,5 +434,8 @@
         <namedColor name="redPrimaryColor">
             <color red="0.84705882352941175" green="0.023529411764705882" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
