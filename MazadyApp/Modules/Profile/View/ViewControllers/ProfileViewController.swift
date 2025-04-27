@@ -157,14 +157,16 @@ class ProfileViewController: BaseViewController {
             if let sheet = languageVC.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 40  
             }
             present(languageVC, animated: true, completion: nil)
         } else {
-           
+            
             languageVC.modalPresentationStyle = .pageSheet
             present(languageVC, animated: true, completion: nil)
         }
     }
+
 
 
     

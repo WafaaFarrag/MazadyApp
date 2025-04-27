@@ -19,22 +19,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        // Setup MainTabBarController
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
-            fatalError("Could not instantiate MainTabBarController from Storyboard.")
-        }
+        setupRootViewController()
         
-        window.rootViewController = mainTabBarController
-        window.makeKeyAndVisible()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(languageDidChange),
+            name: .languageDidChange,
+            object: nil
+        )
 
         return true
     }
 
+    @objc private func languageDidChange() {
+        setupRootViewController()
+    }
 
+    private func setupRootViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
+            fatalError("Could not instantiate MainTabBarController from Storyboard.")
+        }
 
-
-
-
+        UIView.transition(with: window!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                              self.window?.rootViewController = mainTabBarController
+                          },
+                          completion: nil)
+    }
 }
 

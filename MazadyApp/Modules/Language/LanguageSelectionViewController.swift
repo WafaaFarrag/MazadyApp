@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LanguageSelectionViewController: UIViewController {
 
@@ -14,40 +16,58 @@ class LanguageSelectionViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: - Properties
-    var languages = ["English", "العربية"]
-    var filteredLanguages: [String] = []
-    
-    var selectedLanguage: String?
+    private let viewModel = LanguageSelectionViewModel()
+    private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        filteredLanguages = languages
         setupTableView()
         setupSearchTextField()
+        bindViewModel()
     }
 
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "LanguageCell", bundle: nil), forCellReuseIdentifier: "LanguageCell")
         tableView.tableFooterView = UIView()
     }
 
     private func setupSearchTextField() {
-        searchTextField.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
+        // Placeholder
+        searchTextField.placeholder = "Search".localized()
+
+        let imageView = UIImageView(image: .searchNormalIcon)
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .lightGray
+
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
+        imageView.frame = CGRect(x: 5, y: 0, width: 20, height: 20)
+        containerView.addSubview(imageView)
+
+        searchTextField.leftView = containerView
+        searchTextField.leftViewMode = .always
+
+        searchTextField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .bind { [weak self] text in
+                self?.viewModel.filterLanguages(searchText: text)
+            }
+            .disposed(by: disposeBag)
     }
 
-    @objc private func searchTextChanged() {
-        guard let text = searchTextField.text, !text.isEmpty else {
-            filteredLanguages = languages
-            tableView.reloadData()
-            return
-        }
-        filteredLanguages = languages.filter { $0.localizedCaseInsensitiveContains(text) }
-        tableView.reloadData()
+
+    private func bindViewModel() {
+        viewModel.filteredLanguagesRelay
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
 
-    @IBAction func closeButtonTapped(_ sender: UIButton) {
+    @IBAction func closeBtnAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -56,21 +76,24 @@ class LanguageSelectionViewController: UIViewController {
 extension LanguageSelectionViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredLanguages.count
+        return viewModel.languagesCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let language = filteredLanguages[indexPath.row]
-        cell.textLabel?.text = language
-        cell.accessoryType = (language == selectedLanguage) ? .checkmark : .none
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageCell", for: indexPath) as? LanguageCell else {
+            return UITableViewCell()
+        }
+        let cellVM = viewModel.cellViewModel(at: indexPath.row)
+        cell.configure(with: cellVM)
         return cell
     }
 
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedLanguage = filteredLanguages[indexPath.row]
-        // Here you can handle saving the selected language
-        print("Selected Language: \(selectedLanguage ?? "")")
+        viewModel.selectLanguage(at: indexPath.row)
+        tableView.reloadData()
+        
+        // Save to UserDefaults if needed
         dismiss(animated: true, completion: nil)
     }
 }
