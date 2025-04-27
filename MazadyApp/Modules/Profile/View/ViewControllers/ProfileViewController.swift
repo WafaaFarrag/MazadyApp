@@ -15,6 +15,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class ProfileViewController: BaseViewController {
     
@@ -128,14 +129,9 @@ class ProfileViewController: BaseViewController {
                 followingCountLabel.text = user.followingCount.localizedString()
                 
                 if let imageUrl = user.image, let url = URL(string: imageUrl) {
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: url) {
-                            DispatchQueue.main.async {
-                                self.profileImageView.image = UIImage(data: data)
-                            }
-                        }
-                    }
+                    self.profileImageView.kf.setImage(with: url)
                 }
+                
             })
             .disposed(by: disposeBag)
         

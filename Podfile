@@ -15,12 +15,10 @@ target 'MazadyApp' do
   pod 'Moya/RxSwift'
   # Message banners
   pod 'SwiftMessages', '~> 9.0'
-
   # Network reachability
   pod 'ReachabilitySwift', '~> 5.1'
-
   pod 'RxDataSources'
-
+  pod 'Kingfisher'
 
   # Lint (optional)
   # pod 'SwiftLint'

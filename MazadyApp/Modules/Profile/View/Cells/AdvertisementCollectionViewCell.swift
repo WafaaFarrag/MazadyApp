@@ -24,7 +24,14 @@ class AdvertisementCollectionViewCell: UICollectionViewCell {
 
     func configure(with ad: Advertisement) {
         if let url = URL(string: ad.imageURL) {
-            adImageView.load(url: url) 
+            adImageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "product"),
+                options: [
+                    .transition(.fade(0.3)),
+                    .cacheOriginalImage
+                ]
+            )
         }
     }
 }

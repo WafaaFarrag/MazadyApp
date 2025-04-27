@@ -6,8 +6,7 @@
 //
 
 import UIKit
-
-import UIKit
+import Kingfisher
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
@@ -67,16 +66,27 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with product: Product) {
+        
         if let url = URL(string: product.image) {
-            productImageView.load(url: url) { [weak self] in
-                self?.productImageView.layer.cornerRadius = 20
-                self?.productImageView.clipsToBounds = true
-            }
+            productImageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "product"),
+                options: [
+                    .transition(.fade(0.3)),
+                    .cacheOriginalImage
+                ],
+                completionHandler: { [weak self] result in
+                    guard let self = self else { return }
+                    self.productImageView.layer.cornerRadius = 20
+                    self.productImageView.clipsToBounds = true
+                }
+            )
         } else {
-            productImageView.image = UIImage(named: "placeholder")
+            productImageView.image = UIImage(named: "product")
             productImageView.layer.cornerRadius = 20
             productImageView.clipsToBounds = true
         }
+
         
         titleLabel.text = product.name
         priceLabel.text = "\(product.price) \(product.currency)"
