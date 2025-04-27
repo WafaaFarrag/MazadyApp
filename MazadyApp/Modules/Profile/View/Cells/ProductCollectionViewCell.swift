@@ -56,7 +56,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         productImageView.layer.cornerRadius = 12
         productImageView.clipsToBounds = true
         
-        offerPriceLabel.textColor = .red
+        offerPriceLabel.textColor = .blackTextPrimary
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
         
@@ -102,7 +102,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
                 string: "\(product.price) \(product.currency)",
                 attributes: [
                     .strikethroughStyle: NSUnderlineStyle.single.rawValue,
-                    .foregroundColor: UIColor.red
+                    .foregroundColor: UIColor.redSecond
                 ]
             )
             oldPriceLabel.attributedText = attributeString
