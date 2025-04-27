@@ -33,31 +33,43 @@ class PinterestLayout: UICollectionViewLayout {
     override func prepare() {
         guard let collectionView = collectionView else { return }
         cache.removeAll()
+        contentHeight = 0
 
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
-        var xOffset: [CGFloat] = []
-        for column in 0..<numberOfColumns {
-            xOffset.append(CGFloat(column) * columnWidth)
-        }
-        var column = 0
         var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
 
-        for item in 0..<collectionView.numberOfItems(inSection: 0) {
-            let indexPath = IndexPath(item: item, section: 0)
+        for section in 0..<collectionView.numberOfSections {
+            var sectionYOffset = yOffset.max() ?? 0
+            var xOffset: [CGFloat] = []
 
-            let itemHeight = delegate?.collectionView(collectionView, heightForItemAt: indexPath) ?? 180
-            let height = cellPadding * 2 + itemHeight
-            let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
-            let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+            for column in 0..<numberOfColumns {
+                xOffset.append(CGFloat(column) * columnWidth)
+            }
 
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attributes.frame = insetFrame
-            cache.append(attributes)
+            var currentColumn = 0 // Reset current column at start of each section
+            let numberOfItems = collectionView.numberOfItems(inSection: section)
 
-            contentHeight = max(contentHeight, frame.maxY)
-            yOffset[column] = yOffset[column] + height
+            for item in 0..<numberOfItems {
+                let indexPath = IndexPath(item: item, section: section)
 
-            column = yOffset.firstIndex(of: yOffset.min() ?? 0) ?? 0
+                let itemHeight = delegate?.collectionView(collectionView, heightForItemAt: indexPath) ?? 180
+                let height = cellPadding * 2 + itemHeight
+
+                let frame = CGRect(x: xOffset[currentColumn], y: yOffset[currentColumn], width: columnWidth, height: height)
+                let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                attributes.frame = insetFrame
+                cache.append(attributes)
+
+                contentHeight = max(contentHeight, frame.maxY)
+                yOffset[currentColumn] = yOffset[currentColumn] + height
+
+                currentColumn = (currentColumn + 1) % numberOfColumns
+            }
+
+            let maxYOffset = yOffset.max() ?? 0
+            yOffset = Array(repeating: maxYOffset, count: numberOfColumns)
         }
     }
 
@@ -73,7 +85,6 @@ class PinterestLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cache[indexPath.item]
+        return cache.first(where: { $0.indexPath == indexPath })
     }
 }
-
