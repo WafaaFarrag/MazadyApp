@@ -11,14 +11,14 @@ import RxSwift
 import RxDataSources
 
 class ProductsViewController: BaseViewController {
-
+    
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     // MARK: - Properties
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
     var viewModel: ProfileViewModel!
-
+    
     private lazy var defaultFlowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 8
@@ -26,27 +26,27 @@ class ProductsViewController: BaseViewController {
         layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }()
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         bindViewModel()
     }
-
+    
     // MARK: - Setup
     private func setupCollectionView() {
         let pinterestLayout = PinterestLayout()
         pinterestLayout.delegate = self
         collectionView.setCollectionViewLayout(pinterestLayout, animated: false)
-
+        
         collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         collectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
         collectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagsCollectionViewCell")
         collectionView.register(UINib(nibName: "TagsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TagsHeaderView")
-
+        
         collectionView.delegate = self
-
+        
         dataSource = RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>(
             configureCell: { dataSource, collectionView, indexPath, item in
                 let section = dataSource.sectionModels[indexPath.section]
@@ -85,7 +85,7 @@ class ProductsViewController: BaseViewController {
             }
         )
     }
-
+    
     private func bindViewModel() {
         bindLoading(viewModel.isLoading)
         Observable.combineLatest(viewModel.products, viewModel.ads, viewModel.tags)
@@ -103,10 +103,10 @@ class ProductsViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProductsViewController: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let section = dataSource.sectionModels[indexPath.section]
-
+        
         switch section {
         case .productsSection:
             let width = (collectionView.bounds.width - 16) / 3
@@ -117,7 +117,7 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 100, height: 40)
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if case .tagsSection = dataSource.sectionModels[section] {
             return CGSize(width: collectionView.bounds.width, height: 44)
@@ -130,28 +130,28 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
 extension ProductsViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat {
         let section = dataSource.sectionModels[indexPath.section]
-
+        
         switch section {
         case .productsSection(let products):
             let product = products[indexPath.item]
             var baseHeight: CGFloat = 200
             let titleHeight = product.name.heightWithConstrainedWidth(width: (UIScreen.main.bounds.width / 3) - 24, font: UIFont.systemFont(ofSize: 14))
             baseHeight += titleHeight
-
+            
             if product.offer != nil {
                 baseHeight += 20
             }
-
+            
             if product.endDate != nil {
                 baseHeight += 30
             }
-
+            
             return baseHeight
         default:
             return 180
         }
     }
-
+    
     func tagName(for indexPath: IndexPath) -> String {
         let section = dataSource.sectionModels[indexPath.section]
         switch section {
