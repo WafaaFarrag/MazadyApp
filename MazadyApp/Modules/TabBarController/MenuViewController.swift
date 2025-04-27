@@ -10,7 +10,7 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.systemPink.withAlphaComponent(0.9)
+        view.backgroundColor = .redPrimary
         
         let label = UILabel()
         label.text = "Welcome to the Store!"

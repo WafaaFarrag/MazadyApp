@@ -21,8 +21,7 @@ class FollowersViewController: UIViewController {
     }
     
     private func setupViews() {
-        // Setup Message Label
-        messageLabel.text = "No followers yet! 🧑‍🤝‍🧑"
+        messageLabel.text = "No followers yet!"
         messageLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         messageLabel.textColor = .lightGray
         messageLabel.textAlignment = .center

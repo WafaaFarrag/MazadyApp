@@ -16,12 +16,10 @@ class ReviewsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Reviews"
-        
         setupViews()
     }
     
     private func setupViews() {
-        // Message Label
         messageLabel.text = "No reviews yet!"
         messageLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         messageLabel.textColor = .lightGray

@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
 
         welcomeLabel.text = "Welcome Home!"
         welcomeLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
-        welcomeLabel.textColor = .systemPink
+        welcomeLabel.textColor = .redPrimary
         welcomeLabel.textAlignment = .center
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         
         exploreButton.setTitle("Explore More", for: .normal)
         exploreButton.setTitleColor(.white, for: .normal)
-        exploreButton.backgroundColor = .systemPink
+        exploreButton.backgroundColor = .redPrimary
         exploreButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         exploreButton.layer.cornerRadius = 12
         exploreButton.translatesAutoresizingMaskIntoConstraints = false

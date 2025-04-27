@@ -45,7 +45,7 @@ class ProfileViewController: BaseViewController {
     }
     
     // MARK: - Properties
-    var viewModel: ProfileViewModel! // injected
+    var viewModel: ProfileViewModel! 
     private let disposeBag = DisposeBag()
     private var selectedTabIndex = 0
     private var currentChildViewController: UIViewController?
@@ -115,19 +115,28 @@ class ProfileViewController: BaseViewController {
             self.currentChildViewController = newViewController
         })
     }
-    
+        
     private func updateTabsUI(to tabIndex: Int) {
         [productsButton, reviewsButton, followersButton].enumerated().forEach { index, button in
             button.setTitleColor(index == tabIndex ? .redPrimary : .gray, for: .normal)
         }
-        
+
         let buttonWidth = view.frame.width / 3
-        underlineLeadingConstraint.constant = CGFloat(tabIndex) * buttonWidth
-        
+        let padding: CGFloat = 20
+
+        var leading = CGFloat(tabIndex) * buttonWidth
+
+        if tabIndex == 0 {
+            leading += padding
+        }
+
+        underlineLeadingConstraint.constant = leading
+
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
+
     
     private func instantiateViewController(named name: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)

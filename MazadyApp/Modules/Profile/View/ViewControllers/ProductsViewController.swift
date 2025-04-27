@@ -20,8 +20,7 @@ class ProductsViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
     
-    // You can inject or create your own ViewModel here
-    var viewModel: ProfileViewModel! // we can inject the same viewmodel if needed
+    var viewModel: ProfileViewModel!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
