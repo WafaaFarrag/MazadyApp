@@ -70,21 +70,21 @@ class MainTabBarController: UITabBarController {
         centerButton.setImage(UIImage(named: "storeIcon"), for: .normal)
         centerButton.tintColor = .white
         centerButton.layer.masksToBounds = true
-        
+
         centerButton.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
-        
+
         tabBar.addSubview(centerButton)
         view.layoutIfNeeded()
-        
+
         centerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             centerButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            centerButton.centerYAnchor.constraint(equalTo: tabBar.topAnchor, constant: 25),
-            centerButton.widthAnchor.constraint(equalToConstant: 44),
-            centerButton.heightAnchor.constraint(equalToConstant: 44)
+            centerButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor, constant: -10),
+            centerButton.widthAnchor.constraint(equalToConstant: 64),
+            centerButton.heightAnchor.constraint(equalToConstant: 64)
         ])
     }
-    
+
     @objc private func centerButtonTapped() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController {
@@ -95,9 +95,19 @@ class MainTabBarController: UITabBarController {
     
     // MARK: - TabBar Appearance
     private func customizeTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+
+        tabBar.standardAppearance = appearance
+
+        if #available(iOS 15.0, *) {
+            tabBar.scrollEdgeAppearance = appearance
+        }
+
         tabBar.tintColor = .redPrimary
         tabBar.unselectedItemTintColor = UIColor.lightGray
-        tabBar.backgroundColor = .white
         tabBar.layer.masksToBounds = true
     }
+
 }
