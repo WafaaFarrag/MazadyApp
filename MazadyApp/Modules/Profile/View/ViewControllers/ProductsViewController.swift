@@ -135,7 +135,8 @@ extension ProductsViewController: PinterestLayoutDelegate {
         case .productsSection(let products):
             let product = products[indexPath.item]
             var baseHeight: CGFloat = 200
-            let titleHeight = product.name.heightWithConstrainedWidth(width: (UIScreen.main.bounds.width / 3) - 24, font: UIFont.systemFont(ofSize: 14))
+            let titleHeight = product.name.heightWithConstrainedWidth(width: (UIScreen.main.bounds.width / 3) - 24, font:  UIFont(name: "Nunito-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12))
+
             baseHeight += titleHeight
             
             if product.offer != nil {

@@ -104,8 +104,9 @@ class PinterestLayout: UICollectionViewLayout {
                     let indexPath = IndexPath(item: item, section: section)
 
                     let tagName = delegate?.tagName(for: indexPath) ?? ""
-                    let font = UIFont.systemFont(ofSize: 14)
-                    let tagWidth = tagName.size(withAttributes: [.font: font]).width + 32
+                    let font = UIFont(name: "Nunito-Regular", size: 12)
+                    let defaultFont = UIFont.systemFont(ofSize: 12)
+                    let tagWidth = tagName.size(withAttributes: [.font: font ?? defaultFont]).width + 32
                     let tagHeight: CGFloat = 40
 
                     if xTagOffset + tagWidth > maxWidth {

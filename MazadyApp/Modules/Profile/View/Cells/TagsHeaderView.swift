@@ -12,7 +12,7 @@ class TagsHeaderView: UICollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.font = UIFont(name: "Nunito-Regular", size: 18)
         titleLabel.textColor = .black
     }
 }

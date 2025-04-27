@@ -27,6 +27,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             name: .languageDidChange,
             object: nil
         )
+        
+        if let font = UIFont(name: "Nunito-Regular", size: 12) {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: font,
+                .foregroundColor: UIColor.black // normal state color
+            ]
+
+            UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+            UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .selected)
+        }
+
 
         return true
     }
