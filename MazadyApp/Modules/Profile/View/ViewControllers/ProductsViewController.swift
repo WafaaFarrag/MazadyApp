@@ -5,6 +5,7 @@
 //  Created by wafaa farrag on 27/04/2025.
 //
 // ProductsViewController.swift
+
 import UIKit
 import RxSwift
 import RxDataSources
@@ -150,5 +151,14 @@ extension ProductsViewController: PinterestLayoutDelegate {
             return 180
         }
     }
-}
 
+    func tagName(for indexPath: IndexPath) -> String {
+        let section = dataSource.sectionModels[indexPath.section]
+        switch section {
+        case .tagsSection(let tags):
+            return tags[indexPath.item].name
+        default:
+            return ""
+        }
+    }
+}

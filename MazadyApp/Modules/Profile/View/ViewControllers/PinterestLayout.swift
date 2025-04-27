@@ -5,11 +5,11 @@
 //  Created by wafaa farrag on 27/04/2025.
 //
 
-// PinterestLayout.swift
 import UIKit
 
 protocol PinterestLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat
+    func tagName(for indexPath: IndexPath) -> String
 }
 
 class PinterestLayout: UICollectionViewLayout {
@@ -87,14 +87,25 @@ class PinterestLayout: UICollectionViewLayout {
                 }
 
             } else if section == 2 {
-                // Tags Section - Wrapping
+                // Tags Section - Flexible Tags
+
+                // Insert Top Tags Header
+                let headerHeight: CGFloat = 44
+                let headerFrame = CGRect(x: 0, y: contentHeight + 8, width: contentWidth, height: headerHeight)
+                let headerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: IndexPath(item: 0, section: section))
+                headerAttributes.frame = headerFrame
+                cache.append(headerAttributes)
+
                 var xTagOffset: CGFloat = 16
-                var yTagOffset: CGFloat = contentHeight + 8
+                var yTagOffset: CGFloat = headerFrame.maxY + 8
                 let maxWidth = contentWidth - 32
 
                 for item in 0..<itemCount {
                     let indexPath = IndexPath(item: item, section: section)
-                    let tagWidth: CGFloat = 80 
+
+                    let tagName = delegate?.tagName(for: indexPath) ?? ""
+                    let font = UIFont.systemFont(ofSize: 14)
+                    let tagWidth = tagName.size(withAttributes: [.font: font]).width + 32
                     let tagHeight: CGFloat = 40
 
                     if xTagOffset + tagWidth > maxWidth {
@@ -128,5 +139,9 @@ class PinterestLayout: UICollectionViewLayout {
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cache.first { $0.indexPath == indexPath }
+    }
+
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cache.first { $0.indexPath == indexPath && elementKind == UICollectionView.elementKindSectionHeader }
     }
 }
