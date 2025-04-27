@@ -19,6 +19,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var searchBtnBackgroundView: UIView!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
@@ -180,10 +181,22 @@ extension ProfileViewController: UITextFieldDelegate {
     private func setupSearchFieldListener() {
         searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
-    
+
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        if let text = textField.text, text.isEmpty {
+        let text = textField.text ?? ""
+
+        if isSearchTextValid(text) {
+            searchBtnBackgroundView.backgroundColor = .redPrimary
+        } else {
+            searchBtnBackgroundView.backgroundColor = .dimmedRed
+        }
+
+        if text.isEmpty {
             viewModel.loadProducts()
         }
+    }
+
+    private func isSearchTextValid(_ text: String) -> Bool {
+        return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }

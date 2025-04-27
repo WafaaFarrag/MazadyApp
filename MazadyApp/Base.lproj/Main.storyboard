@@ -282,7 +282,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" name="redPrimaryColor"/>
+                                        <color key="backgroundColor" name="dimmedRedColor"/>
                                         <constraints>
                                             <constraint firstItem="adf-bf-i6K" firstAttribute="centerY" secondItem="v25-bf-Qmd" secondAttribute="centerY" id="0tt-gC-LlW"/>
                                             <constraint firstItem="4oA-PJ-O2t" firstAttribute="width" secondItem="v25-bf-Qmd" secondAttribute="width" multiplier="0.6" id="9uu-VR-iZK"/>
@@ -351,6 +351,7 @@
                         <outlet property="productsButton" destination="Z6q-No-JFj" id="QV7-U9-tPu"/>
                         <outlet property="profileImageView" destination="3GV-Q9-7hN" id="e8N-Ro-LAk"/>
                         <outlet property="reviewsButton" destination="DLZ-LI-zW4" id="FJr-VI-GgM"/>
+                        <outlet property="searchBtnBackgroundView" destination="v25-bf-Qmd" id="9jJ-me-4xf"/>
                         <outlet property="searchTextField" destination="FdY-NG-bqd" id="Fmx-yU-JuA"/>
                         <outlet property="underlineLeadingConstraint" destination="tbB-Fc-2v5" id="P9c-U3-6zw"/>
                         <outlet property="underlineView" destination="PuT-Bc-b3N" id="rar-25-zKp"/>
@@ -462,6 +463,9 @@
         <image name="settings" width="24" height="24"/>
         <namedColor name="blackTextPrimaryColor">
             <color red="0.21176470588235294" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dimmedRedColor">
+            <color red="0.82352941176470584" green="0.023529411764705882" blue="0.32549019607843138" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="grayTextScondColor">
             <color red="0.6588235294117647" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
