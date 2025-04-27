@@ -18,7 +18,7 @@ enum NetworkError: Error, LocalizedError {
     case unknown              // Unknown error
 
     static func map(_ error: Error) -> NetworkError {
-        // 1. First, check if the error is a MoyaError
+
         if let moyaError = error as? MoyaError {
             switch moyaError {
             case .statusCode(let response):
@@ -43,15 +43,27 @@ enum NetworkError: Error, LocalizedError {
                 return .unknown
             }
         }
-        
-        // 2. If not MoyaError, check Reachability manually
+
+        let nsError = error as NSError
+        switch nsError.code {
+        case NSURLErrorNotConnectedToInternet:
+            return .noInternet
+        case NSURLErrorTimedOut:
+            return .timeout
+        case NSURLErrorCancelled:
+            return .cancelled
+        default:
+            break
+        }
+
         if !ReachabilityManager.shared.isConnected {
             return .noInternet
         }
 
-        // 3. Fallback: unknown error
+        // 4. Fallback
         return .unknown
     }
+
 
     // MARK: - LocalizedError
     var errorDescription: String? {
