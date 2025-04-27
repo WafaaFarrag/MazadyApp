@@ -75,7 +75,7 @@ class ProfileViewController: BaseViewController {
     }
     
     // MARK: - Setup
-
+    
     private func setupView() {
         view.semanticContentAttribute = LanguageManager.shared.currentLanguage == .arabic ? .forceRightToLeft : .forceLeftToRight
         updateTexts()
@@ -83,10 +83,10 @@ class ProfileViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
         searchTextField.delegate = self
         setupSearchFieldListener()
- 
+        
         
     }
-
+    
     
     func updateLayoutDirectionIfNeeded() {
         viewModel.selectedTabIndex.accept(0)
@@ -215,20 +215,20 @@ class ProfileViewController: BaseViewController {
     
     private func updateTabsUI(to tabIndex: Int) {
         let buttons = [productsButton, reviewsButton, followersButton]
-
+        
         for (index, button) in buttons.enumerated() {
             guard let button = button else { return }
-
+            
             let title = button.title(for: .normal) ?? ""
             let color: UIColor = (index == tabIndex) ? .redPrimary : .gray
             
             let currentFont = button.titleLabel?.font ?? UIFont.systemFont(ofSize: 14.0)
-
+            
             let attributedString = NSAttributedString(string: title, attributes: [
                 .foregroundColor: color,
                 .font: currentFont
             ])
-
+            
             button.setAttributedTitle(attributedString, for: .normal)
         }
         
@@ -238,14 +238,14 @@ class ProfileViewController: BaseViewController {
         if tabIndex == 0 {
             leading += padding
         }
-
+        
         underlineLeadingConstraint.constant = leading
-
+        
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     
     private func presentLanguageSheet() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
