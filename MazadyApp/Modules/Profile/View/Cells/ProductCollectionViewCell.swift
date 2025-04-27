@@ -47,6 +47,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
 
     private func setupUI() {
+        layer.cornerRadius = 24 
+        clipsToBounds = true
         productImageView.contentMode = .scaleAspectFill
         productImageView.layer.cornerRadius = 12
         productImageView.clipsToBounds = true

@@ -32,29 +32,29 @@ class ProductsViewController: BaseViewController {
     // MARK: - Setup
     private func setupCollectionView() {
         collectionView.delegate = self
-        
+
         collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         collectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
         collectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagsCollectionViewCell")
         collectionView.register(UINib(nibName: "TagsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TagsHeaderView")
-        
+
         dataSource = RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>(
             configureCell: { dataSource, collectionView, indexPath, item in
                 let section = dataSource.sectionModels[indexPath.section]
-                
+
                 switch section {
                 case .productsSection(let products):
                     let product = products[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
                     cell.configure(with: product)
                     return cell
-                    
+
                 case .adsSection(let ads):
                     let ad = ads[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdvertisementCollectionViewCell", for: indexPath) as! AdvertisementCollectionViewCell
                     cell.configure(with: ad)
                     return cell
-                    
+
                 case .tagsSection(let tags):
                     let tag = tags[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
@@ -62,7 +62,6 @@ class ProductsViewController: BaseViewController {
                     return cell
                 }
             },
-            
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
                 if kind == UICollectionView.elementKindSectionHeader {
                     let section = dataSource.sectionModels[indexPath.section]
@@ -79,9 +78,15 @@ class ProductsViewController: BaseViewController {
                 }
             }
         )
-        
-        collectionView.collectionViewLayout = createLayout()
+
+        let layout = PinterestLayout()
+        layout.delegate = self
+        layout.numberOfColumns = 2 // or 3 depending on your design
+        layout.cellPadding = 8
+
+        collectionView.collectionViewLayout = layout
     }
+
     
     private func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, environment in
@@ -181,3 +186,39 @@ class ProductsViewController: BaseViewController {
 
 // MARK: - UICollectionViewDelegate
 extension ProductsViewController: UICollectionViewDelegate {}
+extension ProductsViewController: PinterestLayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat {
+        let section = dataSource.sectionModels[indexPath.section]
+
+        switch section {
+        case .productsSection(let products):
+            let product = products[indexPath.item]
+            // Estimate height based on product
+            return calculateHeight(for: product)
+        case .adsSection:
+            return 140 // Banner
+        case .tagsSection:
+            return 40 // Tag size
+        }
+    }
+    
+    private func calculateHeight(for product: Product) -> CGFloat {
+        var baseHeight: CGFloat = 200 // basic minimum height
+
+         let title = product.name
+         let titleHeight = title.heightWithConstrainedWidth(width: (UIScreen.main.bounds.width / 2) - 24, font: UIFont.systemFont(ofSize: 14))
+            baseHeight += titleHeight
+        
+
+        if product.offer != nil {
+            baseHeight += 20
+        }
+
+        if product.endDate != nil {
+            baseHeight += 30
+        }
+
+        return baseHeight
+    }
+
+}

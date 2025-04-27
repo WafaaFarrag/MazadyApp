@@ -15,6 +15,7 @@
 		89A212A12DBE4EC90098A4E2 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */; };
 		89A212A32DBE5FE50098A4E2 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A22DBE5FE50098A4E2 /* UITextField+Extensions.swift */; };
 		89A212A52DBE60A20098A4E2 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A42DBE60A20098A4E2 /* UISearchBar+Extensions.swift */; };
+		89A212A72DBE95260098A4E2 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A62DBE95260098A4E2 /* PinterestLayout.swift */; };
 		89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075822DBDD62000BD953A /* ReviewsViewController.swift */; };
 		89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075842DBDD6CC00BD953A /* FollowersViewController.swift */; };
 		89B075872DBDD77A00BD953A /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075862DBDD77A00BD953A /* ProductsViewController.swift */; };
@@ -107,6 +108,7 @@
 		89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		89A212A22DBE5FE50098A4E2 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		89A212A42DBE60A20098A4E2 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
+		89A212A62DBE95260098A4E2 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		89B075822DBDD62000BD953A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		89B075842DBDD6CC00BD953A /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		89B075862DBDD77A00BD953A /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				89B075842DBDD6CC00BD953A /* FollowersViewController.swift */,
 				89B075862DBDD77A00BD953A /* ProductsViewController.swift */,
 				89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */,
+				89A212A62DBE95260098A4E2 /* PinterestLayout.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				89B0758E2DBDE34000BD953A /* SearchViewController.swift in Sources */,
 				89BC7BAB2DBD8021009EC6C4 /* TagsHeaderView.swift in Sources */,
 				89DD76CC2DBBB73100DA62D6 /* AppEnvironment.swift in Sources */,
+				89A212A72DBE95260098A4E2 /* PinterestLayout.swift in Sources */,
 				89BC7B992DBCFE14009EC6C4 /* ProductCollectionViewCell.swift in Sources */,
 				89DD76CA2DBBB71800DA62D6 /* AppCoordinator.swift in Sources */,
 				89E8EC782DBBBF4F00160B86 /* ProfileRepository.swift in Sources */,
