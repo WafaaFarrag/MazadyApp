@@ -141,22 +141,31 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Products">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tabButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6qx-eN-C0c"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLZ-LI-zW4">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLZ-LI-zW4">
                                         <rect key="frame" x="129" y="0.0" width="129" height="35"/>
                                         <color key="tintColor" name="lightGrayTextColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Reviews">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tabButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vve-uT-7nN"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTA-WV-NP3">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTA-WV-NP3">
                                         <rect key="frame" x="258" y="0.0" width="129" height="35"/>
                                         <color key="tintColor" name="lightGrayTextColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Followers">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tabButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ei4-fL-K5j"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -293,13 +302,19 @@
                     <size key="freeformSize" width="387" height="3000"/>
                     <connections>
                         <outlet property="containerCollectionView" destination="NWh-7H-5bd" id="nI3-zs-qvx"/>
+                        <outlet property="containerView" destination="mXl-wH-Vpy" id="NaH-CD-x4M"/>
+                        <outlet property="followersButton" destination="VTA-WV-NP3" id="TA1-dp-qri"/>
                         <outlet property="followersCountLabel" destination="6p7-ub-P9S" id="E4T-8R-2m7"/>
                         <outlet property="followingCountLabel" destination="HdW-TS-i9G" id="P3r-To-r5l"/>
                         <outlet property="languageLabel" destination="md3-nf-5n5" id="CoV-zH-TFE"/>
                         <outlet property="locationLabel" destination="35p-yd-JmJ" id="gvo-9g-SxT"/>
                         <outlet property="nameLabel" destination="r9C-bP-oDV" id="MGW-yF-DoM"/>
+                        <outlet property="productsButton" destination="Z6q-No-JFj" id="QV7-U9-tPu"/>
                         <outlet property="profileImageView" destination="3GV-Q9-7hN" id="e8N-Ro-LAk"/>
+                        <outlet property="reviewsButton" destination="DLZ-LI-zW4" id="FJr-VI-GgM"/>
                         <outlet property="searchTextField" destination="FdY-NG-bqd" id="Fmx-yU-JuA"/>
+                        <outlet property="underlineLeadingConstraint" destination="tbB-Fc-2v5" id="P9c-U3-6zw"/>
+                        <outlet property="underlineView" destination="PuT-Bc-b3N" id="rar-25-zKp"/>
                         <outlet property="userNameLabel" destination="BhG-S2-kJP" id="WeE-63-NJ9"/>
                     </connections>
                 </viewController>

@@ -13,8 +13,8 @@ import RxDataSources
 class ProfileViewController: BaseViewController {
     // MARK: - Outlets
     //@IBOutlet weak var profileTabsView: Segmentio!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var searchTextField: UITextField!
-  
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -23,6 +23,12 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var containerCollectionView: UICollectionView!
+    @IBOutlet weak var productsButton: UIButton!
+    @IBOutlet weak var reviewsButton: UIButton!
+    @IBOutlet weak var followersButton: UIButton!
+    @IBOutlet weak var underlineView: UIView!
+    @IBOutlet weak var underlineLeadingConstraint: NSLayoutConstraint!
+
     
     @IBAction func searchBtnAction(_ sender: Any) {
         guard let keyword = searchTextField.text, !keyword.isEmpty else {
@@ -33,11 +39,20 @@ class ProfileViewController: BaseViewController {
         searchTextField.resignFirstResponder()
         
     }
+    
+    @IBAction func tabButtonTapped(_ sender: UIButton) {
+        selectedTabIndex = sender.tag
+        updateTabsUI(animated: true)
+        scrollToSelectedTab()
+    }
+
+    
     // MARK: - Properties
     var viewModel: ProfileViewModel! // injected later
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
-    
+    private var selectedTabIndex = 0
+    private var currentChildViewController: UIViewController?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -59,7 +74,7 @@ class ProfileViewController: BaseViewController {
         setupSearchFieldListener()
     }
     private func setupCollectionView() {
-        
+        containerCollectionView.delegate = self
         // 1. Register cells
         containerCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         containerCollectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
@@ -267,3 +282,45 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 
 }
+
+extension ProfileViewController: UIScrollViewDelegate, UICollectionViewDelegate {
+    
+    private func updateTabsUI(animated: Bool) {
+        [productsButton, reviewsButton, followersButton].enumerated().forEach { index, button in
+            if index == selectedTabIndex {
+                button.setTitleColor(.systemPink, for: .normal)
+            } else {
+                button.setTitleColor(.gray, for: .normal)
+            }
+        }
+
+        let buttonWidth = view.frame.width / 3
+        underlineLeadingConstraint.constant = CGFloat(selectedTabIndex) * buttonWidth
+
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    
+    private func scrollToSelectedTab() {
+        let indexPath = IndexPath(item: selectedTabIndex, section: 0)
+        containerCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        selectedTabIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        updateTabsUI(animated: true)
+    }
+
+    private func instantiateViewController(named name: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
+    }
+
+
+}
+

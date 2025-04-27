@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		240BEEC4FA18E6170D799A38 /* libPods-MazadyAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D91145204283ADDE014D1D7 /* libPods-MazadyAppUITests.a */; };
 		2E87F41FE6BE6A98A49E050B /* libPods-MazadyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B2E0FBD6B389F15D15EFE /* libPods-MazadyAppTests.a */; };
+		89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075822DBDD62000BD953A /* ReviewsViewController.swift */; };
+		89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075842DBDD6CC00BD953A /* FollowersViewController.swift */; };
 		89B89A592DBBE4FF00040851 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B89A582DBBE4FF00040851 /* Tag.swift */; };
 		89B89A5B2DBBE52100040851 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B89A5A2DBBE52100040851 /* Advertisement.swift */; };
 		89B89A5D2DBBE54100040851 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B89A5C2DBBE54100040851 /* Product.swift */; };
@@ -79,6 +81,8 @@
 		5771E3C09BB3E2B344092D7E /* Pods_MazadyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazadyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		590B737F7AF8F4308456B68C /* Pods-MazadyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazadyAppTests.release.xcconfig"; path = "Target Support Files/Pods-MazadyAppTests/Pods-MazadyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		5D91145204283ADDE014D1D7 /* libPods-MazadyAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MazadyAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89B075822DBDD62000BD953A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
+		89B075842DBDD6CC00BD953A /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		89B89A582DBBE4FF00040851 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		89B89A5A2DBBE52100040851 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		89B89A5C2DBBE54100040851 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				89E8EC7D2DBBBF8200160B86 /* ProfileViewController.swift */,
+				89B075822DBDD62000BD953A /* ReviewsViewController.swift */,
+				89B075842DBDD6CC00BD953A /* FollowersViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -678,6 +684,8 @@
 				89BC7B992DBCFE14009EC6C4 /* ProductCollectionViewCell.swift in Sources */,
 				89DD76CA2DBBB71800DA62D6 /* AppCoordinator.swift in Sources */,
 				89E8EC782DBBBF4F00160B86 /* ProfileRepository.swift in Sources */,
+				89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */,
+				89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */,
 				89BC7B902DBCE987009EC6C4 /* FetchProductsUseCase.swift in Sources */,
 				89DD76CE2DBBB74800DA62D6 /* AppDIContainer.swift in Sources */,
 				89DD76D42DBBB79B00DA62D6 /* BaseRepository.swift in Sources */,
