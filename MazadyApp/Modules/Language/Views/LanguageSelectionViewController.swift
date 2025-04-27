@@ -8,7 +8,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LanguageSelectionViewController: UIViewController {
+class LanguageSelectionViewController: BaseViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var searchTextField: UITextField!
@@ -16,7 +16,6 @@ class LanguageSelectionViewController: UIViewController {
 
     // MARK: - Properties
     private let viewModel = LanguageSelectionViewModel()
-    private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -55,6 +54,7 @@ class LanguageSelectionViewController: UIViewController {
     }
 
     private func bindViewModel() {
+        bindLoading(viewModel.isLoading)
         viewModel.filteredLanguagesRelay
             .asDriver()
             .drive(onNext: { [weak self] _ in

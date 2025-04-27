@@ -16,7 +16,6 @@ class ProductsViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     // MARK: - Properties
-    private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
     var viewModel: ProfileViewModel!
 
@@ -88,6 +87,7 @@ class ProductsViewController: BaseViewController {
     }
 
     private func bindViewModel() {
+        bindLoading(viewModel.isLoading)
         Observable.combineLatest(viewModel.products, viewModel.ads, viewModel.tags)
             .map { products, ads, tags -> [ProfileSectionModel] in
                 return [

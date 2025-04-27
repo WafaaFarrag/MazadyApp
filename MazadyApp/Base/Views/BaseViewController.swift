@@ -5,10 +5,27 @@
 //  Created by wafaa farrag on 25/04/2025.
 //
 
-import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BaseViewController: UIViewController {
+    
+    var disposeBag = DisposeBag()
+
+    func bindLoading(_ loading: BehaviorRelay<Bool>) {
+        loading
+            .asDriver()
+            .drive(onNext: { isLoading in
+                if isLoading {
+                    LoadingService.show()
+                } else {
+                    LoadingService.hide()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+
     func showSuccess(message: String) {
         SwiftMessagesService.show(message: message, theme: .success)
     }

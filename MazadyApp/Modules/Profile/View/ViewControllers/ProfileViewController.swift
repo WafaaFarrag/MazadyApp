@@ -39,7 +39,6 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var settingsButton: UIButton!
     // MARK: - Properties
     var viewModel: ProfileViewModel!
-    private let disposeBag = DisposeBag()
     private var currentChildViewController: UIViewController?
     
     private var currentLanguageName: String {
@@ -116,6 +115,7 @@ class ProfileViewController: BaseViewController {
     
     // MARK: - Binding
     private func bindViewModel() {
+        bindLoading(viewModel.isLoading)
         viewModel.user
             .asDriver()
             .drive(onNext: { [weak self] user in
