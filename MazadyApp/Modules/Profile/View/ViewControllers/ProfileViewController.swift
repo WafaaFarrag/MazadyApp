@@ -118,7 +118,7 @@ class ProfileViewController: BaseViewController {
     
     private func updateTabsUI(to tabIndex: Int) {
         [productsButton, reviewsButton, followersButton].enumerated().forEach { index, button in
-            button.setTitleColor(index == tabIndex ? .systemPink : .gray, for: .normal)
+            button.setTitleColor(index == tabIndex ? .redPrimary : .gray, for: .normal)
         }
         
         let buttonWidth = view.frame.width / 3

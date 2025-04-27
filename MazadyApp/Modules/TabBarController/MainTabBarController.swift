@@ -68,9 +68,7 @@ class MainTabBarController: UITabBarController {
     // MARK: - Setup Center Button
     private func setupCenterButton() {
         centerButton.setImage(UIImage(named: "storeIcon"), for: .normal)
-        centerButton.backgroundColor = UIColor.systemPink
         centerButton.tintColor = .white
-        centerButton.layer.cornerRadius = 32
         centerButton.layer.masksToBounds = true
         
         centerButton.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
@@ -81,9 +79,9 @@ class MainTabBarController: UITabBarController {
         centerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             centerButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            centerButton.centerYAnchor.constraint(equalTo: tabBar.topAnchor),
-            centerButton.widthAnchor.constraint(equalToConstant: 64),
-            centerButton.heightAnchor.constraint(equalToConstant: 64)
+            centerButton.centerYAnchor.constraint(equalTo: tabBar.topAnchor, constant: 25),
+            centerButton.widthAnchor.constraint(equalToConstant: 44),
+            centerButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
@@ -97,7 +95,7 @@ class MainTabBarController: UITabBarController {
     
     // MARK: - TabBar Appearance
     private func customizeTabBarAppearance() {
-        tabBar.tintColor = UIColor.systemPink
+        tabBar.tintColor = .redPrimary
         tabBar.unselectedItemTintColor = UIColor.lightGray
         tabBar.backgroundColor = .white
         tabBar.layer.masksToBounds = true
