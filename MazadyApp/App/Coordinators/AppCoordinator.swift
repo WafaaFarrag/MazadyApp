@@ -24,7 +24,7 @@ class AppCoordinator {
             fatalError("Could not instantiate ProfileViewController from Storyboard.")
         }
         
-        viewController.configure(with: viewModel) // Inject ViewModel
+        viewController.configure(with: viewModel) 
 
         let navController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navController

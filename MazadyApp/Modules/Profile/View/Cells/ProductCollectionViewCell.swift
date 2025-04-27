@@ -56,9 +56,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
         titleLabel.lineBreakMode = .byWordWrapping
 
         containerOfferPriceStackView.setContentHuggingPriority(.required, for: .vertical)
-        containerOfferPriceStackView.isHidden = true // Initially
+        containerOfferPriceStackView.isHidden = true 
         timerStackView.setContentHuggingPriority(.required, for: .vertical)
-        timerStackView.isHidden = true // Initially
+        timerStackView.isHidden = true
 
         containerOfferPriceStackView.isHidden = true
         timerStackView.isHidden = true

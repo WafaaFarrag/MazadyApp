@@ -33,7 +33,6 @@ class TagsCollectionViewCell: UICollectionViewCell {
         titleLabel.setContentHuggingPriority(.required, for: .horizontal)
         titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         titleLabel.numberOfLines = 1
-        //titleLabel.adjustsFontSizeToFitWidth = true
     }
     
     func configure(with tag: Tag) {
