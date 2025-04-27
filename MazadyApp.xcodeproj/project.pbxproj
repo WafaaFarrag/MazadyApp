@@ -13,6 +13,8 @@
 		89A212962DBE2B9F0098A4E2 /* Bundle+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */; };
 		89A2129F2DBE47720098A4E2 /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */; };
 		89A212A12DBE4EC90098A4E2 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */; };
+		89A212A32DBE5FE50098A4E2 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A22DBE5FE50098A4E2 /* UITextField+Extensions.swift */; };
+		89A212A52DBE60A20098A4E2 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A42DBE60A20098A4E2 /* UISearchBar+Extensions.swift */; };
 		89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075822DBDD62000BD953A /* ReviewsViewController.swift */; };
 		89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075842DBDD6CC00BD953A /* FollowersViewController.swift */; };
 		89B075872DBDD77A00BD953A /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075862DBDD77A00BD953A /* ProductsViewController.swift */; };
@@ -103,6 +105,8 @@
 		89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Language.swift"; sourceTree = "<group>"; };
 		89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
 		89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		89A212A22DBE5FE50098A4E2 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		89A212A42DBE60A20098A4E2 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		89B075822DBDD62000BD953A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		89B075842DBDD6CC00BD953A /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		89B075862DBDD77A00BD953A /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -477,6 +481,8 @@
 				89B075A32DBE221200BD953A /* String+Extensions.swift */,
 				89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */,
 				89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */,
+				89A212A22DBE5FE50098A4E2 /* UITextField+Extensions.swift */,
+				89A212A42DBE60A20098A4E2 /* UISearchBar+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -815,6 +821,7 @@
 				89BC7B9F2DBD1160009EC6C4 /* AdvertisementCollectionViewCell.swift in Sources */,
 				89DD76E22DBBB83000DA62D6 /* ReachabilityManager.swift in Sources */,
 				89B0758A2DBDE2C200BD953A /* MainTabBarController.swift in Sources */,
+				89A212A32DBE5FE50098A4E2 /* UITextField+Extensions.swift in Sources */,
 				89B0758C2DBDE32C00BD953A /* HomeViewController.swift in Sources */,
 				89B0758E2DBDE34000BD953A /* SearchViewController.swift in Sources */,
 				89BC7BAB2DBD8021009EC6C4 /* TagsHeaderView.swift in Sources */,
@@ -835,6 +842,7 @@
 				89B075902DBDE35800BD953A /* CartViewController.swift in Sources */,
 				89DD76D82DBBB7BD00DA62D6 /* APIManager.swift in Sources */,
 				89DD76882DBBB5A200DA62D6 /* AppDelegate.swift in Sources */,
+				89A212A52DBE60A20098A4E2 /* UISearchBar+Extensions.swift in Sources */,
 				89DD76D22DBBB78800DA62D6 /* BaseViewModel.swift in Sources */,
 				89B075A02DBE1E4000BD953A /* LanguageManager.swift in Sources */,
 				89DD76D02DBBB76B00DA62D6 /* BaseViewController.swift in Sources */,

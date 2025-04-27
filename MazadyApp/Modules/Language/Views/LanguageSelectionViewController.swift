@@ -34,8 +34,7 @@ class LanguageSelectionViewController: UIViewController {
     }
 
     private func setupSearchTextField() {
-        searchTextField.placeholder = "searchPlaceholder".localized()
-        
+        searchTextField.setLocalizedPlaceholder("searchPlaceholder")
         let imageView = UIImageView(image: .searchNormalIcon)
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .lightGray

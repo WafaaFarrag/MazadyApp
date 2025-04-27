@@ -21,7 +21,9 @@ class SearchViewController: UIViewController {
     }
     
     private func setupViews() {
-        searchBar.placeholder = "searchPlaceholderLong".localized()
+        
+        searchBar.setLocalizedPlaceholder("searchPlaceholderLong")
+
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         
         messageLabel.text = "startSearchingMessage".localized()

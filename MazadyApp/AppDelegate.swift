@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-
+        LanguageManager.shared.applyCurrentLanguageSettings()
         setupRootViewController()
         
         NotificationCenter.default.addObserver(

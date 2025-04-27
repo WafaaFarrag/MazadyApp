@@ -46,6 +46,18 @@ class LanguageManager {
         
         NotificationCenter.default.post(name: .languageDidChange, object: nil)
     }
+    
+    func applyCurrentLanguageSettings() {
+        let language = currentLanguage
+        Bundle.setLanguage(language.rawValue)
+        
+        if language == .arabic {
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        } else {
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }
+    }
+
 
 }
 

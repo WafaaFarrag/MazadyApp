@@ -58,8 +58,14 @@ class ProfileViewController: BaseViewController {
         setupView()
         bindViewModel()
         viewModel.loadAllData()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateLayoutDirectionIfNeeded()
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
     }
@@ -71,29 +77,43 @@ class ProfileViewController: BaseViewController {
     // MARK: - Setup
     private func setupView() {
         updateTexts()
-        
-        if UIView.userInterfaceLayoutDirection(for: view.semanticContentAttribute) == .rightToLeft {
-            settingsButton.semanticContentAttribute = .forceRightToLeft
-            settingsButton.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
-            searchIconImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
-        } else {
-            settingsButton.semanticContentAttribute = .forceLeftToRight
-            settingsButton.imageView?.transform = .identity
-            searchIconImageView.transform = .identity
-        }
-
+        updateLayoutDirectionIfNeeded()
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
         searchTextField.delegate = self
         setupSearchFieldListener()
     }
     
+//    private func adjustSearchIconDirection() {
+//        if UIView.userInterfaceLayoutDirection(for: view.semanticContentAttribute) == .rightToLeft {
+//            searchIconImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+//            searchIconImageView.semanticContentAttribute = .forceRightToLeft
+//        } else {
+//            searchIconImageView.transform = .identity
+//            searchIconImageView.semanticContentAttribute = .forceLeftToRight
+//        }
+//    }
+//    
+    func updateLayoutDirectionIfNeeded() {
+        let currentLanguage = LanguageManager.shared.currentLanguage
+        switch currentLanguage {
+        case .english:
+            searchIconImageView.transform = .identity
+        case .arabic:
+            searchIconImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+        }
+    }
+
+
+    
     @objc private func languageDidChange() {
         updateTexts()
+        updateLayoutDirectionIfNeeded()
+        searchTextField.setLocalizedPlaceholder("searchPlaceholder")
     }
     
     private func updateTexts() {
         languageLabel.text = currentLanguageName
-        searchTextField.placeholder = "searchPlaceholder".localized()
+        searchTextField.setLocalizedPlaceholder("searchPlaceholder")
         productsButton.setTitle("productsLabel".localized(), for: .normal)
         reviewsButton.setTitle("reviewsLabel".localized(), for: .normal)
         followersButton.setTitle("followersLabel".localized(), for: .normal)
