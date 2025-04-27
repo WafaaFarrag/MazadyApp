@@ -5,7 +5,6 @@
 //  Created by wafaa farrag on 27/04/2025.
 //
 
-
 import UIKit
 import RxSwift
 import RxDataSources
@@ -18,7 +17,6 @@ class ProductsViewController: BaseViewController {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
-
     var viewModel: ProfileViewModel!
 
     // MARK: - Lifecycle
@@ -30,6 +28,10 @@ class ProductsViewController: BaseViewController {
 
     // MARK: - Setup
     private func setupCollectionView() {
+        let layout = PinterestLayout()
+        layout.delegate = self
+        layout.cellPadding = 8
+        collectionView.collectionViewLayout = layout
         collectionView.delegate = self
 
         collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
@@ -46,13 +48,11 @@ class ProductsViewController: BaseViewController {
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
                     cell.configure(with: product)
                     return cell
-
                 case .adsSection(let ads):
                     let ad = ads[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdvertisementCollectionViewCell", for: indexPath) as! AdvertisementCollectionViewCell
                     cell.configure(with: ad)
                     return cell
-
                 case .tagsSection(let tags):
                     let tag = tags[indexPath.item]
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
@@ -76,13 +76,6 @@ class ProductsViewController: BaseViewController {
                 }
             }
         )
-
-        let layout = PinterestLayout()
-        layout.delegate = self
-        layout.numberOfColumns = 3
-        layout.cellPadding = 8
-
-        collectionView.collectionViewLayout = layout
     }
 
     private func bindViewModel() {
@@ -100,31 +93,43 @@ class ProductsViewController: BaseViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ProductsViewController: UICollectionViewDelegate { }
+extension ProductsViewController: UICollectionViewDelegate {}
 
 // MARK: - PinterestLayoutDelegate
 extension ProductsViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat {
         let section = dataSource.sectionModels[indexPath.section]
-
         switch section {
         case .productsSection(let products):
             let product = products[indexPath.item]
-            return calculateProductHeight(for: product)
-
+            return calculateHeight(for: product)
         case .adsSection:
-            return 140 // Banner height
-
-        case .tagsSection(let tags):
-            let tag = tags[indexPath.item]
-            return 40 // Fixed tag cell height
+            return 140
+        case .tagsSection:
+            return 40
         }
     }
 
-    private func calculateProductHeight(for product: Product) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, numberOfColumnsInSection section: Int) -> Int {
+        let section = dataSource.sectionModels[section]
+        switch section {
+        case .productsSection:
+            return 3
+        case .adsSection:
+            return 1
+        case .tagsSection:
+            return 2
+        }
+    }
+
+    private func calculateHeight(for product: Product) -> CGFloat {
         var baseHeight: CGFloat = 200
+
         let title = product.name
-        let titleHeight = title.heightWithConstrainedWidth(width: (UIScreen.main.bounds.width / 3) - 24, font: UIFont.systemFont(ofSize: 14))
+        let titleHeight = title.heightWithConstrainedWidth(
+            width: (UIScreen.main.bounds.width / 3) - 24,
+            font: UIFont.systemFont(ofSize: 14)
+        )
         baseHeight += titleHeight
 
         if product.offer != nil {
@@ -138,5 +143,3 @@ extension ProductsViewController: PinterestLayoutDelegate {
         return baseHeight
     }
 }
-
-

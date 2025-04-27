@@ -9,17 +9,18 @@ import UIKit
 
 protocol PinterestLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, numberOfColumnsInSection section: Int) -> Int
 }
 
 class PinterestLayout: UICollectionViewLayout {
 
     weak var delegate: PinterestLayoutDelegate?
 
-    var numberOfColumns = 3
     var cellPadding: CGFloat = 8
 
     private var cache: [UICollectionViewLayoutAttributes] = []
     private var contentHeight: CGFloat = 0
+
     private var contentWidth: CGFloat {
         guard let collectionView = collectionView else { return 0 }
         let insets = collectionView.contentInset
@@ -35,23 +36,26 @@ class PinterestLayout: UICollectionViewLayout {
         cache.removeAll()
         contentHeight = 0
 
-        let columnWidth = contentWidth / CGFloat(numberOfColumns)
-        var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
+        var yOffset: [CGFloat] = []
 
         for section in 0..<collectionView.numberOfSections {
-            var sectionYOffset = yOffset.max() ?? 0
-            var xOffset: [CGFloat] = []
+            let columnCount = delegate?.collectionView(collectionView, numberOfColumnsInSection: section) ?? 2
+            let columnWidth = contentWidth / CGFloat(columnCount)
 
-            for column in 0..<numberOfColumns {
+            var xOffset: [CGFloat] = []
+            for column in 0..<columnCount {
                 xOffset.append(CGFloat(column) * columnWidth)
             }
 
-            var currentColumn = 0 // Reset current column at start of each section
+            if yOffset.count != columnCount {
+                yOffset = Array(repeating: yOffset.max() ?? 0, count: columnCount)
+            }
+
+            var currentColumn = 0
             let numberOfItems = collectionView.numberOfItems(inSection: section)
 
             for item in 0..<numberOfItems {
                 let indexPath = IndexPath(item: item, section: section)
-
                 let itemHeight = delegate?.collectionView(collectionView, heightForItemAt: indexPath) ?? 180
                 let height = cellPadding * 2 + itemHeight
 
@@ -65,11 +69,11 @@ class PinterestLayout: UICollectionViewLayout {
                 contentHeight = max(contentHeight, frame.maxY)
                 yOffset[currentColumn] = yOffset[currentColumn] + height
 
-                currentColumn = (currentColumn + 1) % numberOfColumns
+                currentColumn = (currentColumn + 1) % columnCount
             }
 
             let maxYOffset = yOffset.max() ?? 0
-            yOffset = Array(repeating: maxYOffset, count: numberOfColumns)
+            yOffset = Array(repeating: maxYOffset, count: columnCount)
         }
     }
 
