@@ -4,7 +4,7 @@
 //
 //  Created by wafaa farrag on 27/04/2025.
 //
-
+// ProductsViewController.swift
 import UIKit
 import RxSwift
 import RxDataSources
@@ -19,6 +19,14 @@ class ProductsViewController: BaseViewController {
     private var dataSource: RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>!
     var viewModel: ProfileViewModel!
 
+    private lazy var defaultFlowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        layout.sectionHeadersPinToVisibleBounds = true
+        return layout
+    }()
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +36,16 @@ class ProductsViewController: BaseViewController {
 
     // MARK: - Setup
     private func setupCollectionView() {
-        let layout = PinterestLayout()
-        layout.delegate = self
-        layout.cellPadding = 8
-        collectionView.collectionViewLayout = layout
-        collectionView.delegate = self
+        let pinterestLayout = PinterestLayout()
+        pinterestLayout.delegate = self
+        collectionView.setCollectionViewLayout(pinterestLayout, animated: false)
 
         collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         collectionView.register(UINib(nibName: "AdvertisementCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AdvertisementCollectionViewCell")
         collectionView.register(UINib(nibName: "TagsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagsCollectionViewCell")
         collectionView.register(UINib(nibName: "TagsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TagsHeaderView")
+
+        collectionView.delegate = self
 
         dataSource = RxCollectionViewSectionedReloadDataSource<ProfileSectionModel>(
             configureCell: { dataSource, collectionView, indexPath, item in
@@ -92,54 +100,55 @@ class ProductsViewController: BaseViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension ProductsViewController: UICollectionViewDelegate {}
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ProductsViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let section = dataSource.sectionModels[indexPath.section]
+
+        switch section {
+        case .productsSection:
+            let width = (collectionView.bounds.width - 16) / 3
+            return CGSize(width: width, height: 250)
+        case .adsSection:
+            return CGSize(width: collectionView.bounds.width, height: 140)
+        case .tagsSection:
+            return CGSize(width: 100, height: 40)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if case .tagsSection = dataSource.sectionModels[section] {
+            return CGSize(width: collectionView.bounds.width, height: 44)
+        }
+        return .zero
+    }
+}
 
 // MARK: - PinterestLayoutDelegate
 extension ProductsViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat {
         let section = dataSource.sectionModels[indexPath.section]
+
         switch section {
         case .productsSection(let products):
             let product = products[indexPath.item]
-            return calculateHeight(for: product)
-        case .adsSection:
-            return 140
-        case .tagsSection:
-            return 40
+            var baseHeight: CGFloat = 200
+            let titleHeight = product.name.heightWithConstrainedWidth(width: (UIScreen.main.bounds.width / 3) - 24, font: UIFont.systemFont(ofSize: 14))
+            baseHeight += titleHeight
+
+            if product.offer != nil {
+                baseHeight += 20
+            }
+
+            if product.endDate != nil {
+                baseHeight += 30
+            }
+
+            return baseHeight
+        default:
+            return 180
         }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfColumnsInSection section: Int) -> Int {
-        let section = dataSource.sectionModels[section]
-        switch section {
-        case .productsSection:
-            return 3
-        case .adsSection:
-            return 1
-        case .tagsSection:
-            return 2
-        }
-    }
-
-    private func calculateHeight(for product: Product) -> CGFloat {
-        var baseHeight: CGFloat = 200
-
-        let title = product.name
-        let titleHeight = title.heightWithConstrainedWidth(
-            width: (UIScreen.main.bounds.width / 3) - 24,
-            font: UIFont.systemFont(ofSize: 14)
-        )
-        baseHeight += titleHeight
-
-        if product.offer != nil {
-            baseHeight += 20
-        }
-
-        if product.endDate != nil {
-            baseHeight += 30
-        }
-
-        return baseHeight
     }
 }
+

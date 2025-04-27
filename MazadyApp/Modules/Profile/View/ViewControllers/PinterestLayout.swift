@@ -5,18 +5,16 @@
 //  Created by wafaa farrag on 27/04/2025.
 //
 
+// PinterestLayout.swift
 import UIKit
 
 protocol PinterestLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, heightForItemAt indexPath: IndexPath) -> CGFloat
-    func collectionView(_ collectionView: UICollectionView, numberOfColumnsInSection section: Int) -> Int
 }
 
 class PinterestLayout: UICollectionViewLayout {
 
     weak var delegate: PinterestLayoutDelegate?
-
-    var cellPadding: CGFloat = 8
 
     private var cache: [UICollectionViewLayoutAttributes] = []
     private var contentHeight: CGFloat = 0
@@ -33,47 +31,87 @@ class PinterestLayout: UICollectionViewLayout {
 
     override func prepare() {
         guard let collectionView = collectionView else { return }
+
         cache.removeAll()
         contentHeight = 0
 
-        var yOffset: [CGFloat] = []
+        let numberOfColumns = 3
+        let cellPadding: CGFloat = 8
+        let columnWidth = contentWidth / CGFloat(numberOfColumns)
+        var xOffset: [CGFloat] = []
+        for column in 0..<numberOfColumns {
+            xOffset.append(CGFloat(column) * columnWidth)
+        }
+        var column = 0
+        var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
 
         for section in 0..<collectionView.numberOfSections {
-            let columnCount = delegate?.collectionView(collectionView, numberOfColumnsInSection: section) ?? 2
-            let columnWidth = contentWidth / CGFloat(columnCount)
+            let itemCount = collectionView.numberOfItems(inSection: section)
 
-            var xOffset: [CGFloat] = []
-            for column in 0..<columnCount {
-                xOffset.append(CGFloat(column) * columnWidth)
+            if section == 0 {
+                // Products Section - Pinterest Masonry
+                for item in 0..<itemCount {
+                    let indexPath = IndexPath(item: item, section: section)
+                    let itemHeight = delegate?.collectionView(collectionView, heightForItemAt: indexPath) ?? 180
+                    let height = cellPadding * 2 + itemHeight
+
+                    let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
+                    let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+
+                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                    attributes.frame = insetFrame
+                    cache.append(attributes)
+
+                    contentHeight = max(contentHeight, frame.maxY)
+                    yOffset[column] = yOffset[column] + height
+
+                    column = (column + 1) % numberOfColumns
+                }
+
+                let maxYOffset = yOffset.max() ?? 0
+                yOffset = .init(repeating: maxYOffset, count: numberOfColumns)
+
+            } else if section == 1 {
+                // Ads Section - Full Width
+                for item in 0..<itemCount {
+                    let indexPath = IndexPath(item: item, section: section)
+                    let width = contentWidth
+                    let height: CGFloat = 140
+                    let frame = CGRect(x: 0, y: contentHeight + 8, width: width, height: height)
+
+                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                    attributes.frame = frame
+                    cache.append(attributes)
+
+                    contentHeight = frame.maxY
+                }
+
+            } else if section == 2 {
+                // Tags Section - Wrapping
+                var xTagOffset: CGFloat = 16
+                var yTagOffset: CGFloat = contentHeight + 8
+                let maxWidth = contentWidth - 32
+
+                for item in 0..<itemCount {
+                    let indexPath = IndexPath(item: item, section: section)
+                    let tagWidth: CGFloat = 80 
+                    let tagHeight: CGFloat = 40
+
+                    if xTagOffset + tagWidth > maxWidth {
+                        xTagOffset = 16
+                        yTagOffset += tagHeight + 8
+                    }
+
+                    let frame = CGRect(x: xTagOffset, y: yTagOffset, width: tagWidth, height: tagHeight)
+                    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                    attributes.frame = frame
+                    cache.append(attributes)
+
+                    xTagOffset += tagWidth + 8
+                }
+
+                contentHeight = yTagOffset + 40 + 16
             }
-
-            if yOffset.count != columnCount {
-                yOffset = Array(repeating: yOffset.max() ?? 0, count: columnCount)
-            }
-
-            var currentColumn = 0
-            let numberOfItems = collectionView.numberOfItems(inSection: section)
-
-            for item in 0..<numberOfItems {
-                let indexPath = IndexPath(item: item, section: section)
-                let itemHeight = delegate?.collectionView(collectionView, heightForItemAt: indexPath) ?? 180
-                let height = cellPadding * 2 + itemHeight
-
-                let frame = CGRect(x: xOffset[currentColumn], y: yOffset[currentColumn], width: columnWidth, height: height)
-                let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
-
-                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                attributes.frame = insetFrame
-                cache.append(attributes)
-
-                contentHeight = max(contentHeight, frame.maxY)
-                yOffset[currentColumn] = yOffset[currentColumn] + height
-
-                currentColumn = (currentColumn + 1) % columnCount
-            }
-
-            let maxYOffset = yOffset.max() ?? 0
-            yOffset = Array(repeating: maxYOffset, count: columnCount)
         }
     }
 
@@ -89,6 +127,6 @@ class PinterestLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cache.first(where: { $0.indexPath == indexPath })
+        return cache.first { $0.indexPath == indexPath }
     }
 }
