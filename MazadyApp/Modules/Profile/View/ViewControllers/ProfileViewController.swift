@@ -45,6 +45,10 @@ class ProfileViewController: BaseViewController {
         }
     }
     
+    @IBAction func settingsButtonTapped(_ sender: UIButton) {
+        presentLanguageSheet()
+    }
+    
     // MARK: - Properties
     var viewModel: ProfileViewModel! 
     private let disposeBag = DisposeBag()
@@ -142,6 +146,27 @@ class ProfileViewController: BaseViewController {
     private func instantiateViewController(named name: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
     }
+    
+    private func presentLanguageSheet() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let languageVC = storyboard.instantiateViewController(withIdentifier: "LanguageSelectionViewController") as? LanguageSelectionViewController else {
+            return
+        }
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = languageVC.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.prefersGrabberVisible = true
+            }
+            present(languageVC, animated: true, completion: nil)
+        } else {
+           
+            languageVC.modalPresentationStyle = .pageSheet
+            present(languageVC, animated: true, completion: nil)
+        }
+    }
+
+
     
     // MARK: - Binding
     private func bindViewModel() {
