@@ -1,5 +1,5 @@
 // General
-"searchPlaceholder" = "Search";
+
 "profileTitle" = "Profile";
 "settingsTitle" = "Settings";
 "languageTitle" = "Language";
@@ -11,11 +11,7 @@
 "reviewsLabel" = "Reviews";
 "languageSelectionTitle" = "Select Language";
 
-// Tab Bar Items
-"homeTab" = "Home";
-"searchTab" = "Search";
-"cartTab" = "Cart";
-"profileTab" = "Profile";
+
 
 // Profile
 "lotStartsIn" = "Lot Starts In";
@@ -25,8 +21,31 @@
 "hoursShort" = "H";
 "minutesShort" = "M";
 
-// Common Buttons
-"saveButton" = "Save";
-"cancelButton" = "Cancel";
+
+
+// store
+"welcomeToStore" = "Welcome to the Store!";
+"closeButton" = "Close";
+
+// cart
+"cartTab" = "Cart";
+"emptyCartMessage" = "Your cart is empty";
+
+// search
+"searchTab" = "Search";
+"searchPlaceholderLong" = "Search anything...";
+"startSearchingMessage" = "Start searching!";
+
+// home
+"homeTab" = "Home";
+"welcomeHomeMessage" = "Welcome Home!";
+"exploreMoreButton" = "Explore More";
+"exploreTitle" = "Explore";
+"comingSoonMessage" = "Coming soon!";
 "okButton" = "OK";
-"continueButton" = "Continue";
+
+"searchPlaceholder" = "Search";
+
+// Tab Bar Items
+"cartTab" = "Cart";
+"profileTab" = "Profile";

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 import UIKit
 
 class CartViewController: UIViewController {
@@ -16,13 +15,12 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Cart"
-        
+        title = "cartTab".localized()
         setupViews()
     }
     
     private func setupViews() {
-        messageLabel.text = "Your cart is empty"
+        messageLabel.text = "emptyCartMessage".localized()
         messageLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         messageLabel.textColor = .lightGray
         messageLabel.textAlignment = .center

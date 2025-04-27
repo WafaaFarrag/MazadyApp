@@ -4,7 +4,6 @@
 //
 //  Created by wafaa farrag on 27/04/2025.
 //
-
 import UIKit
 
 class MainTabBarController: UITabBarController {
@@ -18,27 +17,28 @@ class MainTabBarController: UITabBarController {
         setupCenterButton()
         customizeTabBarAppearance()
         selectedIndex = 3
+        NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
     }
     
     // MARK: - Setup Tabs
     private func setupViewControllers() {
         viewControllers = [
-            createNavController(for: HomeViewController(), title: "Home", imageName: "homeIcon", selectedImageName: "homeSelectedIcon"),
-            createNavController(for: SearchViewController(), title: "Search", imageName: "searchIcon", selectedImageName: "searchSelectedIcon"),
-            createNavController(for: CartViewController(), title: "Cart", imageName: "cartIcon", selectedImageName: "cartSelectedIcon"),
+            createNavController(for: HomeViewController(), titleKey: "homeTab", imageName: "homeIcon", selectedImageName: "homeSelectedIcon"),
+            createNavController(for: SearchViewController(), titleKey: "searchTab", imageName: "searchIcon", selectedImageName: "searchSelectedIcon"),
+            createNavController(for: CartViewController(), titleKey: "cartTab", imageName: "cartIcon", selectedImageName: "cartSelectedIcon"),
             createProfileNavController()
         ]
     }
     
     private func createNavController(for rootViewController: UIViewController,
-                                     title: String,
+                                     titleKey: String,
                                      imageName: String,
                                      selectedImageName: String) -> UINavigationController {
         
         let navController = UINavigationController(rootViewController: rootViewController)
         
         navController.tabBarItem = UITabBarItem(
-            title: title,
+            title: titleKey.localized(),
             image: UIImage(named: imageName),
             selectedImage: UIImage(named: selectedImageName)
         )
@@ -57,7 +57,7 @@ class MainTabBarController: UITabBarController {
         
         let navController = UINavigationController(rootViewController: profileVC)
         navController.tabBarItem = UITabBarItem(
-            title: "Profile",
+            title: "profileTab".localized(),
             image: UIImage(named: "profileIcon"),
             selectedImage: UIImage(named: "profileSelectedIcon")
         )
@@ -109,5 +109,24 @@ class MainTabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = UIColor.lightGray
         tabBar.layer.masksToBounds = true
     }
-
+    
+    // MARK: - Language Change
+    @objc private func languageDidChange() {
+        guard let viewControllers = viewControllers else { return }
+        
+        for (index, vc) in viewControllers.enumerated() {
+            switch index {
+            case 0:
+                vc.tabBarItem.title = "homeTab".localized()
+            case 1:
+                vc.tabBarItem.title = "searchTab".localized()
+            case 2:
+                vc.tabBarItem.title = "cartTab".localized()
+            case 3:
+                vc.tabBarItem.title = "profileTab".localized()
+            default:
+                break
+            }
+        }
+    }
 }

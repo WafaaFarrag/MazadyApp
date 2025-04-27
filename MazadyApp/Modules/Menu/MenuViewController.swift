@@ -13,7 +13,7 @@ class MenuViewController: UIViewController {
         view.backgroundColor = .redPrimary
         
         let label = UILabel()
-        label.text = "Welcome to the Store!"
+        label.text = "welcomeToStore".localized()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,7 @@ class MenuViewController: UIViewController {
         ])
         
         let closeButton = UIButton(type: .system)
-        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitle("closeButton".localized(), for: .normal)
         closeButton.setTitleColor(.white, for: .normal)
         closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         closeButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)

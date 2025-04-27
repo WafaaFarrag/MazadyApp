@@ -1,5 +1,5 @@
 // General
-"searchPlaceholder" = "بحث";
+
 "profileTitle" = "الملف الشخصي";
 "settingsTitle" = "الإعدادات";
 "languageTitle" = "اللغة";
@@ -11,12 +11,6 @@
 "reviewsLabel" = "المراجعات";
 "languageSelectionTitle" = "اختر اللغة";
 
-// Tab Bar Items
-"homeTab" = "الرئيسية";
-"searchTab" = "بحث";
-"cartTab" = "السلة";
-"profileTab" = "الملف الشخصي";
-
 // Profile
 "lotStartsIn" = "يبدأ المزاد خلال";
 "priceLabel" = "السعر";
@@ -25,8 +19,29 @@
 "hoursShort" = "س"; // ساعة
 "minutesShort" = "د"; // دقيقة
 
-// Common Buttons
-"saveButton" = "حفظ";
-"cancelButton" = "إلغاء";
+// store
+"welcomeToStore" = "مرحبًا بك في المتجر!";
+"closeButton" = "إغلاق";
+
+// cart
+"cartTab" = "السلة";
+"emptyCartMessage" = "سلة التسوق فارغة";
+
+// search
+"searchTab" = "بحث";
+"searchPlaceholderLong" = "ابحث عن أي شيء...";
+"startSearchingMessage" = "ابدأ البحث!";
+
+// home
+"homeTab" = "الرئيسية";
+"welcomeHomeMessage" = "أهلاً بك في الرئيسية!";
+"exploreMoreButton" = "استكشاف المزيد";
+"exploreTitle" = "استكشاف";
+"comingSoonMessage" = "قريباً!";
 "okButton" = "موافق";
-"continueButton" = "استمرار";
+
+"searchPlaceholder" = "بحث";
+
+// Tab Bar Items
+"cartTab" = "السلة";
+"profileTab" = "الملف الشخصي";

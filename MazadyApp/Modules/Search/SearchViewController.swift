@@ -7,7 +7,6 @@
 
 import UIKit
 
-import UIKit
 
 class SearchViewController: UIViewController {
 
@@ -17,16 +16,15 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Search"
-        
+        title = "searchTab".localized()
         setupViews()
     }
     
     private func setupViews() {
-        searchBar.placeholder = "Search anything..."
+        searchBar.placeholder = "searchPlaceholderLong".localized()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         
-        messageLabel.text = "Start searching!"
+        messageLabel.text = "startSearchingMessage".localized()
         messageLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         messageLabel.textColor = .lightGray
         messageLabel.textAlignment = .center

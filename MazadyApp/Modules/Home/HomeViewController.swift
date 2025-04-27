@@ -15,14 +15,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Home"
-        
+        title = "homeTab".localized()
         setupViews()
     }
     
     private func setupViews() {
-
-        welcomeLabel.text = "Welcome Home!"
+        welcomeLabel.text = "welcomeHomeMessage".localized()
         welcomeLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         welcomeLabel.textColor = .redPrimary
         welcomeLabel.textAlignment = .center
@@ -32,7 +30,7 @@ class HomeViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        exploreButton.setTitle("Explore More", for: .normal)
+        exploreButton.setTitle("exploreMoreButton".localized(), for: .normal)
         exploreButton.setTitleColor(.white, for: .normal)
         exploreButton.backgroundColor = .redPrimary
         exploreButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -63,8 +61,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func exploreButtonTapped() {
-        let alert = UIAlertController(title: "Explore", message: "Coming soon!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(title: "exploreTitle".localized(), message: "comingSoonMessage".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "okButton".localized(), style: .default))
         present(alert, animated: true)
     }
 }

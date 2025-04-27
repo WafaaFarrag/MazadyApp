@@ -4,7 +4,6 @@
 //
 //  Created by wafaa farrag on 27/04/2025.
 //
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -35,9 +34,8 @@ class LanguageSelectionViewController: UIViewController {
     }
 
     private func setupSearchTextField() {
-        // Placeholder
-        searchTextField.placeholder = "Search".localized()
-
+        searchTextField.placeholder = "searchPlaceholder".localized()
+        
         let imageView = UIImageView(image: .searchNormalIcon)
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .lightGray
@@ -56,7 +54,6 @@ class LanguageSelectionViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-
 
     private func bindViewModel() {
         viewModel.filteredLanguagesRelay
@@ -88,12 +85,9 @@ extension LanguageSelectionViewController: UITableViewDelegate, UITableViewDataS
         return cell
     }
 
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectLanguage(at: indexPath.row)
         tableView.reloadData()
-        
-        // Save to UserDefaults if needed
         dismiss(animated: true, completion: nil)
     }
 }

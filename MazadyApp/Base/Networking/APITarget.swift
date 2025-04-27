@@ -44,7 +44,20 @@ extension APITarget: TargetType {
         }
     }
     
-    var headers: [String : String]? {
-        return ["Content-Type": "application/json"]
+    var headers: [String: String]? {
+        let localeValue: String
+        switch LanguageManager.shared.currentLanguage {
+        case .arabic:
+            localeValue = "ar"
+        case .english:
+            localeValue = "en"
+        }
+
+        return [
+            "Content-Type": "application/json",
+            "Accept-Language": localeValue,
+            "locale": localeValue
+        ]
     }
+
 }
