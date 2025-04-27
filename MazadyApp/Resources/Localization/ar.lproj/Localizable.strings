@@ -47,4 +47,9 @@
 "cartTab" = "السلة";
 "profileTab" = "الملف الشخصي";
 
-
+// error message
+"errorDecoding" = "حدث خطأ أثناء معالجة البيانات.";
+"errorNoInternet" = "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.";
+"errorTimeout" = "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.";
+"errorCancelled" = "تم إلغاء الطلب.";
+"errorUnknown" = "حدث خطأ غير معروف.";

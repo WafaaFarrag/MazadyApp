@@ -11,8 +11,6 @@
 "reviewsLabel" = "Reviews";
 "languageSelectionTitle" = "Select Language";
 
-
-
 // Profile
 "lotStartsIn" = "Lot Starts In";
 "priceLabel" = "Price";
@@ -50,3 +48,10 @@
 // Tab Bar Items
 "cartTab" = "Cart";
 "profileTab" = "Profile";
+
+// error message
+"errorDecoding" = "Something went wrong while decoding data.";
+"errorNoInternet" = "No Internet Connection. Please check your network.";
+"errorTimeout" = "The request timed out. Please try again.";
+"errorCancelled" = "The request was cancelled.";
+"errorUnknown" = "An unknown error occurred.";

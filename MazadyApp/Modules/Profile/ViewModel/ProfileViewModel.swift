@@ -52,7 +52,7 @@ class ProfileViewModel: BaseViewModel {
                 case .success(let user):
                     self?.user.accept(user)
                 case .failure(let error):
-                    self?.handleError(error as! NetworkError)
+                    self?.handleError(error)
                 }
                 self?.isLoading.accept(false)
             }
@@ -68,7 +68,7 @@ class ProfileViewModel: BaseViewModel {
                 case .success(let products):
                     self?.products.accept(products)
                 case .failure(let error):
-                    self?.handleError(error as! NetworkError)
+                    self?.handleError(error)
                 }
                 self?.isLoading.accept(false)
             }
@@ -84,7 +84,7 @@ class ProfileViewModel: BaseViewModel {
                 case .success(let products):
                     self?.products.accept(products)
                 case .failure(let error):
-                    self?.handleError(error as! NetworkError)
+                    self?.handleError(error)
                 }
                 self?.isLoading.accept(false)
             }
@@ -100,7 +100,7 @@ class ProfileViewModel: BaseViewModel {
                 case .success(let ads):
                     self?.ads.accept(ads)
                 case .failure(let error):
-                    self?.handleError(error as! NetworkError)
+                    self?.handleError(error)
                 }
                 self?.isLoading.accept(false)
             }
@@ -116,7 +116,7 @@ class ProfileViewModel: BaseViewModel {
                 case .success(let tags):
                     self?.tags.accept(tags)
                 case .failure(let error):
-                    self?.handleError(error as! NetworkError)
+                    self?.handleError(error)
                 }
                 self?.isLoading.accept(false)
             }

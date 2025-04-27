@@ -9,12 +9,15 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+
 class BaseViewModel {
     let isLoading = BehaviorRelay<Bool>(value: false)
     let error = PublishSubject<String>()
     let disposeBag = DisposeBag()
 
-    func handleError(_ error: NetworkError) {
-        SwiftMessagesService.show(message: error.localizedDescription, theme: .error)
+    func handleError(_ error: Error) {
+        let networkError = NetworkError.map(error)
+        let message = networkError.localizedDescription
+        SwiftMessagesService.show(message: message, theme: .error)
     }
 }
