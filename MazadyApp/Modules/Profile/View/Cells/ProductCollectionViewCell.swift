@@ -23,7 +23,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var minutesLabel: UILabel!
-    @IBOutlet weak var bottomSpacerView: UIView! // Add a flexible spacer to fill space
+    @IBOutlet weak var bottomSpacerView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,7 +46,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupUI() {
-        layer.cornerRadius = 24 // Outer card corner
+        layer.cornerRadius = 20
         clipsToBounds = true
 
         productImageView.contentMode = .scaleAspectFill
@@ -68,7 +68,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
     func configure(with product: Product) {
         if let url = URL(string: product.image) {
-            productImageView.load(url: url)
+            productImageView.load(url: url) { [weak self] in
+                self?.productImageView.layer.cornerRadius = 20
+                self?.productImageView.clipsToBounds = true
+            }
+        } else {
+            productImageView.image = UIImage(named: "placeholder")
+            productImageView.layer.cornerRadius = 20
+            productImageView.clipsToBounds = true
         }
 
         titleLabel.text = product.name

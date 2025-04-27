@@ -36,7 +36,7 @@ class PinterestLayout: UICollectionViewLayout {
         contentHeight = 0
 
         let numberOfColumns = 3
-        let cellPadding: CGFloat = 8
+        let cellPadding: CGFloat = 4
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
         for column in 0..<numberOfColumns {

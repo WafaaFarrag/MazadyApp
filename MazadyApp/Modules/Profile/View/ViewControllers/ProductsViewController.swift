@@ -75,7 +75,7 @@ class ProductsViewController: BaseViewController {
                     switch section {
                     case .tagsSection:
                         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TagsHeaderView", for: indexPath) as! TagsHeaderView
-                        header.titleLabel.text = "Top Tags"
+                        header.titleLabel.text = "topTagsHeader".localized()
                         return header
                     default:
                         return UICollectionReusableView()
