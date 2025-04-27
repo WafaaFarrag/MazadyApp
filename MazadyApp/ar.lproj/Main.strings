@@ -1,0 +1,48 @@
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "4Rk-Og-H5U"; */
+"4Rk-Og-H5U.title" = "";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "5BM-qZ-QTu"; */
+"5BM-qZ-QTu.text" = "المتابعون";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "6p7-ub-P9S"; */
+"6p7-ub-P9S.text" = "";
+
+/* Class = "UIButton"; configuration.title = "Reviews"; ObjectID = "DLZ-LI-zW4"; */
+"DLZ-LI-zW4.configuration.title" = "المراجعات";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "DLZ-LI-zW4"; */
+"DLZ-LI-zW4.normalTitle" = "";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "FMy-1I-19P"; */
+"FMy-1I-19P.text" = "المتابَعون";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "HdW-TS-i9G"; */
+"HdW-TS-i9G.text" = "";
+
+/* Class = "UITabBarItem"; title = "Item 2"; ObjectID = "LXq-4N-hLJ"; */
+"LXq-4N-hLJ.title" = "";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "PdU-Hi-HkW"; */
+"PdU-Hi-HkW.text" = "اللغة";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "SzF-29-7xo"; */
+"SzF-29-7xo.title" = "";
+
+/* Class = "UIButton"; configuration.title = "Followers"; ObjectID = "VTA-WV-NP3"; */
+"VTA-WV-NP3.configuration.title" = "المتابعون";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "VTA-WV-NP3"; */
+"VTA-WV-NP3.normalTitle" = "";
+
+/* Class = "UIButton"; configuration.title = "Products"; ObjectID = "Z6q-No-JFj"; */
+"Z6q-No-JFj.configuration.title" = "المنتجات";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Z6q-No-JFj"; */
+"Z6q-No-JFj.normalTitle" = "";
+
+/* Class = "UILabel"; text = "English"; ObjectID = "md3-nf-5n5"; */
+"md3-nf-5n5.text" = "الإنجليزية";
+
+/* Class = "UITabBarItem"; title = "Item 1"; ObjectID = "yDQ-GU-Q0f"; */
+"yDQ-GU-Q0f.title" = "";

@@ -1,0 +1,32 @@
+// General
+"searchPlaceholder" = "Search";
+"profileTitle" = "Profile";
+"settingsTitle" = "Settings";
+"languageTitle" = "Language";
+"chooseLanguage" = "Choose Language";
+"closeButton" = "Close";
+"followersLabel" = "Followers";
+"followingLabel" = "Following";
+"productsLabel" = "Products";
+"reviewsLabel" = "Reviews";
+"languageSelectionTitle" = "Select Language";
+
+// Tab Bar Items
+"homeTab" = "Home";
+"searchTab" = "Search";
+"cartTab" = "Cart";
+"profileTab" = "Profile";
+
+// Profile
+"lotStartsIn" = "Lot Starts In";
+"priceLabel" = "Price";
+"offerPriceLabel" = "Offer Price";
+"daysShort" = "D";
+"hoursShort" = "H";
+"minutesShort" = "M";
+
+// Common Buttons
+"saveButton" = "Save";
+"cancelButton" = "Cancel";
+"okButton" = "OK";
+"continueButton" = "Continue";

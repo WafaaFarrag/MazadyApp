@@ -1,0 +1,78 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "AYh-dl-7MO.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"H\"; ObjectID = \"AYh-dl-7MO\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "H"
+          }
+        }
+      }
+    },
+    "k5w-LC-7t8.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"D\"; ObjectID = \"k5w-LC-7t8\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "D"
+          }
+        }
+      }
+    },
+    "M40-Ke-UxY.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Lot Starts In\"; ObjectID = \"M40-Ke-UxY\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Lot Starts In"
+          }
+        }
+      }
+    },
+    "Qrf-Xv-cfk.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Price\"; ObjectID = \"Qrf-Xv-cfk\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Price"
+          }
+        }
+      }
+    },
+    "rT6-ap-cHt.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"M\"; ObjectID = \"rT6-ap-cHt\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "M"
+          }
+        }
+      }
+    },
+    "VMQ-JZ-XpG.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Offer Price\"; ObjectID = \"VMQ-JZ-XpG\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Offer Price"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

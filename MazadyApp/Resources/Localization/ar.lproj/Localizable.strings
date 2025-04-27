@@ -1,0 +1,32 @@
+// General
+"searchPlaceholder" = "بحث";
+"profileTitle" = "الملف الشخصي";
+"settingsTitle" = "الإعدادات";
+"languageTitle" = "اللغة";
+"chooseLanguage" = "اختر اللغة";
+"closeButton" = "إغلاق";
+"followersLabel" = "المتابعين";
+"followingLabel" = "تتابعهم";
+"productsLabel" = "المنتجات";
+"reviewsLabel" = "المراجعات";
+"languageSelectionTitle" = "اختر اللغة";
+
+// Tab Bar Items
+"homeTab" = "الرئيسية";
+"searchTab" = "بحث";
+"cartTab" = "السلة";
+"profileTab" = "الملف الشخصي";
+
+// Profile
+"lotStartsIn" = "يبدأ المزاد خلال";
+"priceLabel" = "السعر";
+"offerPriceLabel" = "سعر العرض";
+"daysShort" = "ي"; // يوم
+"hoursShort" = "س"; // ساعة
+"minutesShort" = "د"; // دقيقة
+
+// Common Buttons
+"saveButton" = "حفظ";
+"cancelButton" = "إلغاء";
+"okButton" = "موافق";
+"continueButton" = "استمرار";

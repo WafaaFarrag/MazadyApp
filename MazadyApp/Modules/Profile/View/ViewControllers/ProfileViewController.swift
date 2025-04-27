@@ -5,7 +5,6 @@
 //
 //  Created by wafaa farrag on 25/04/2025.
 //
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -50,11 +49,21 @@ class ProfileViewController: BaseViewController {
     }
     
     // MARK: - Properties
-    var viewModel: ProfileViewModel! 
+    var viewModel: ProfileViewModel!
     private let disposeBag = DisposeBag()
     private var selectedTabIndex = 0
     private var currentChildViewController: UIViewController?
     
+    private var currentLanguageName: String {
+        let currentLanguage = LanguageManager.shared.currentLanguage
+        switch currentLanguage {
+        case .english:
+            return "English"
+        case .arabic:
+            return "العربية"
+        }
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,12 +78,28 @@ class ProfileViewController: BaseViewController {
     }
     
     private func setupView() {
+        languageLabel.text = currentLanguageName
+        searchTextField.placeholder = "searchPlaceholder".localized()
+        productsButton.setTitle("productsLabel".localized(), for: .normal)
+        reviewsButton.setTitle("reviewsLabel".localized(), for: .normal)
+        followersButton.setTitle("followersLabel".localized(), for: .normal)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
+        
         searchTextField.delegate = self
         setupSearchFieldListener()
-        displayCurrentTab(0) // Default first tab
+        displayCurrentTab(0)
         updateTabsUI(to: 0)
     }
     
+    @objc private func languageDidChange() {
+        languageLabel.text = currentLanguageName
+        searchTextField.placeholder = "searchPlaceholder".localized()
+        productsButton.setTitle("productsLabel".localized(), for: .normal)
+        reviewsButton.setTitle("reviewsLabel".localized(), for: .normal)
+        followersButton.setTitle("followersLabel".localized(), for: .normal)
+    }
+
     // MARK: - Child ViewControllers Handling
     private func displayCurrentTab(_ tabIndex: Int) {
         let newViewController: UIViewController
@@ -92,7 +117,6 @@ class ProfileViewController: BaseViewController {
         }
         
         guard let currentVC = currentChildViewController else {
-            // First time
             addChild(newViewController)
             containerView.addSubview(newViewController.view)
             newViewController.view.frame = containerView.bounds
@@ -102,7 +126,6 @@ class ProfileViewController: BaseViewController {
             return
         }
         
-        // Animate swap
         let isForward = tabIndex > selectedTabIndex
         addChild(newViewController)
         newViewController.view.frame = containerView.bounds.offsetBy(dx: isForward ? containerView.frame.width : -containerView.frame.width, dy: 0)
@@ -115,7 +138,6 @@ class ProfileViewController: BaseViewController {
             currentVC.willMove(toParent: nil)
             currentVC.view.removeFromSuperview()
             currentVC.removeFromParent()
-            
             newViewController.didMove(toParent: self)
             self.currentChildViewController = newViewController
         })
@@ -142,7 +164,6 @@ class ProfileViewController: BaseViewController {
         }
     }
 
-    
     private func instantiateViewController(named name: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
     }
@@ -157,19 +178,15 @@ class ProfileViewController: BaseViewController {
             if let sheet = languageVC.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.prefersGrabberVisible = true
-                sheet.preferredCornerRadius = 40  
+                sheet.preferredCornerRadius = 40
             }
             present(languageVC, animated: true, completion: nil)
         } else {
-            
             languageVC.modalPresentationStyle = .pageSheet
             present(languageVC, animated: true, completion: nil)
         }
     }
 
-
-
-    
     // MARK: - Binding
     private func bindViewModel() {
         viewModel.user

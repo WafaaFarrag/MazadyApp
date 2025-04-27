@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LanguageManager {
 
@@ -29,11 +30,23 @@ class LanguageManager {
         }
     }
 
+
     func setLanguage(_ language: Language) {
         currentLanguage = language
-        // Post notification or use Rx to notify app
+        
+        UserDefaults.standard.setValue(language.rawValue, forKey: selectedLanguageKey)
+        
+        if language == .arabic {
+            Bundle.setLanguage("ar")
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        } else {
+            Bundle.setLanguage("en")
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }
+        
         NotificationCenter.default.post(name: .languageDidChange, object: nil)
     }
+
 }
 
 extension Notification.Name {
