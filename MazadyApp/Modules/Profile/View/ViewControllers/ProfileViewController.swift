@@ -218,12 +218,22 @@ class ProfileViewController: BaseViewController {
 
         for (index, button) in buttons.enumerated() {
             guard let button = button else { return }
-            button.setTitleColor(index == tabIndex ? .redPrimary : .gray, for: .normal)
+
+            let title = button.title(for: .normal) ?? ""
+            let color: UIColor = (index == tabIndex) ? .redPrimary : .gray
+            
+            let currentFont = button.titleLabel?.font ?? UIFont.systemFont(ofSize: 14.0)
+
+            let attributedString = NSAttributedString(string: title, attributes: [
+                .foregroundColor: color,
+                .font: currentFont
+            ])
+
+            button.setAttributedTitle(attributedString, for: .normal)
         }
         
         let buttonWidth = view.frame.width / 3
         let padding: CGFloat = 20
-        
         var leading = CGFloat(tabIndex) * buttonWidth
         if tabIndex == 0 {
             leading += padding
@@ -231,12 +241,10 @@ class ProfileViewController: BaseViewController {
 
         underlineLeadingConstraint.constant = leading
 
-        // Animate underline movement
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
-
 
     
     private func presentLanguageSheet() {
