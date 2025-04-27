@@ -11,6 +11,7 @@
 		2E87F41FE6BE6A98A49E050B /* libPods-MazadyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B2E0FBD6B389F15D15EFE /* libPods-MazadyAppTests.a */; };
 		89A2128D2DBE2ACB0098A4E2 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89A2128F2DBE2ACB0098A4E2 /* ProductCollectionViewCell.xib */; };
 		89A212962DBE2B9F0098A4E2 /* Bundle+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */; };
+		89A2129F2DBE47720098A4E2 /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */; };
 		89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075822DBDD62000BD953A /* ReviewsViewController.swift */; };
 		89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075842DBDD6CC00BD953A /* FollowersViewController.swift */; };
 		89B075872DBDD77A00BD953A /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075862DBDD77A00BD953A /* ProductsViewController.swift */; };
@@ -99,6 +100,7 @@
 		89A212922DBE2AEF0098A4E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ProductCollectionViewCell.strings; sourceTree = "<group>"; };
 		89A212942DBE2AF10098A4E2 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ProductCollectionViewCell.strings; sourceTree = "<group>"; };
 		89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Language.swift"; sourceTree = "<group>"; };
+		89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
 		89B075822DBDD62000BD953A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		89B075842DBDD6CC00BD953A /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		89B075862DBDD77A00BD953A /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				89B075822DBDD62000BD953A /* ReviewsViewController.swift */,
 				89B075842DBDD6CC00BD953A /* FollowersViewController.swift */,
 				89B075862DBDD77A00BD953A /* ProductsViewController.swift */,
+				89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				89E8EC7C2DBBBF6F00160B86 /* ProfileViewModel.swift in Sources */,
 				89A212962DBE2B9F0098A4E2 /* Bundle+Language.swift in Sources */,
 				89B075A52DBE287600BD953A /* Localizable.strings in Sources */,
+				89A2129F2DBE47720098A4E2 /* ProfileSectionModel.swift in Sources */,
 				89B075A42DBE221200BD953A /* String+Extensions.swift in Sources */,
 				89B0759D2DBE1B0000BD953A /* LanguageCell.swift in Sources */,
 				89DD76DE2DBBB7FD00DA62D6 /* SwiftMessagesService.swift in Sources */,

@@ -5,6 +5,13 @@
 //
 //  Created by wafaa farrag on 25/04/2025.
 //
+//
+//  ProfileViewController.swift
+//  MazadyApp
+//
+//  Created by wafaa farrag on 25/04/2025.
+//
+
 import UIKit
 import RxSwift
 import RxCocoa
@@ -28,30 +35,9 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var underlineLeadingConstraint: NSLayoutConstraint!
     
-    // MARK: - Actions
-    @IBAction func searchBtnAction(_ sender: Any) {
-        guard let keyword = searchTextField.text, !keyword.isEmpty else { return }
-        viewModel.searchProducts(by: keyword)
-        searchTextField.resignFirstResponder()
-    }
-    
-    @IBAction func tabButtonTapped(_ sender: UIButton) {
-        let newTabIndex = sender.tag
-        if selectedTabIndex != newTabIndex {
-            displayCurrentTab(newTabIndex)
-            updateTabsUI(to: newTabIndex)
-            selectedTabIndex = newTabIndex
-        }
-    }
-    
-    @IBAction func settingsButtonTapped(_ sender: UIButton) {
-        presentLanguageSheet()
-    }
-    
     // MARK: - Properties
     var viewModel: ProfileViewModel!
     private let disposeBag = DisposeBag()
-    private var selectedTabIndex = 0
     private var currentChildViewController: UIViewController?
     
     private var currentLanguageName: String {
@@ -63,7 +49,7 @@ class ProfileViewController: BaseViewController {
             return "العربية"
         }
     }
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,121 +62,30 @@ class ProfileViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
     }
     
-    // MARK: - Setup
     func configure(with viewModel: ProfileViewModel) {
         self.viewModel = viewModel
     }
     
+    // MARK: - Setup
     private func setupView() {
-        languageLabel.text = currentLanguageName
-        searchTextField.placeholder = "searchPlaceholder".localized()
-        productsButton.setTitle("productsLabel".localized(), for: .normal)
-        reviewsButton.setTitle("reviewsLabel".localized(), for: .normal)
-        followersButton.setTitle("followersLabel".localized(), for: .normal)
-        
+        updateTexts()
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
-        
         searchTextField.delegate = self
         setupSearchFieldListener()
-        displayCurrentTab(0)
-        updateTabsUI(to: 0)
     }
     
     @objc private func languageDidChange() {
+        updateTexts()
+    }
+    
+    private func updateTexts() {
         languageLabel.text = currentLanguageName
         searchTextField.placeholder = "searchPlaceholder".localized()
         productsButton.setTitle("productsLabel".localized(), for: .normal)
         reviewsButton.setTitle("reviewsLabel".localized(), for: .normal)
         followersButton.setTitle("followersLabel".localized(), for: .normal)
     }
-
-    // MARK: - Child ViewControllers Handling
-    private func displayCurrentTab(_ tabIndex: Int) {
-        let newViewController: UIViewController
-        switch tabIndex {
-        case 0:
-            let productsVC = instantiateViewController(named: "ProductsViewController") as! ProductsViewController
-            productsVC.viewModel = self.viewModel
-            newViewController = productsVC
-        case 1:
-            newViewController = instantiateViewController(named: "ReviewsViewController")
-        case 2:
-            newViewController = instantiateViewController(named: "FollowersViewController")
-        default:
-            return
-        }
-        
-        guard let currentVC = currentChildViewController else {
-            addChild(newViewController)
-            containerView.addSubview(newViewController.view)
-            newViewController.view.frame = containerView.bounds
-            newViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            newViewController.didMove(toParent: self)
-            currentChildViewController = newViewController
-            return
-        }
-        
-        let isForward = tabIndex > selectedTabIndex
-        addChild(newViewController)
-        newViewController.view.frame = containerView.bounds.offsetBy(dx: isForward ? containerView.frame.width : -containerView.frame.width, dy: 0)
-        containerView.addSubview(newViewController.view)
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            newViewController.view.frame = self.containerView.bounds
-            currentVC.view.frame = self.containerView.bounds.offsetBy(dx: isForward ? -self.containerView.frame.width : self.containerView.frame.width, dy: 0)
-        }, completion: { _ in
-            currentVC.willMove(toParent: nil)
-            currentVC.view.removeFromSuperview()
-            currentVC.removeFromParent()
-            newViewController.didMove(toParent: self)
-            self.currentChildViewController = newViewController
-        })
-    }
-        
-    private func updateTabsUI(to tabIndex: Int) {
-        [productsButton, reviewsButton, followersButton].enumerated().forEach { index, button in
-            button.setTitleColor(index == tabIndex ? .redPrimary : .gray, for: .normal)
-        }
-
-        let buttonWidth = view.frame.width / 3
-        let padding: CGFloat = 20
-
-        var leading = CGFloat(tabIndex) * buttonWidth
-
-        if tabIndex == 0 {
-            leading += padding
-        }
-
-        underlineLeadingConstraint.constant = leading
-
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    private func instantiateViewController(named name: String) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
-    }
     
-    private func presentLanguageSheet() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let languageVC = storyboard.instantiateViewController(withIdentifier: "LanguageSelectionViewController") as? LanguageSelectionViewController else {
-            return
-        }
-        
-        if #available(iOS 15.0, *) {
-            if let sheet = languageVC.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-                sheet.preferredCornerRadius = 40
-            }
-            present(languageVC, animated: true, completion: nil)
-        } else {
-            languageVC.modalPresentationStyle = .pageSheet
-            present(languageVC, animated: true, completion: nil)
-        }
-    }
-
     // MARK: - Binding
     private func bindViewModel() {
         viewModel.user
@@ -214,11 +109,121 @@ class ProfileViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.selectedTabIndex
+            .asDriver()
+            .drive(onNext: { [weak self] index in
+                guard let self = self else { return }
+                self.displayCurrentTab(index)
+                self.updateTabsUI(to: index)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - UI Actions
+    @IBAction func tabButtonTapped(_ sender: UIButton) {
+        viewModel.selectedTabIndex.accept(sender.tag)
+    }
+    
+    @IBAction func searchBtnAction(_ sender: Any) {
+        guard let keyword = searchTextField.text, !keyword.isEmpty else { return }
+        viewModel.searchProducts(by: keyword)
+        searchTextField.resignFirstResponder()
+    }
+    
+    @IBAction func settingsButtonTapped(_ sender: UIButton) {
+        presentLanguageSheet()
+    }
+    
+    // MARK: - Child VCs Handling
+    private func displayCurrentTab(_ tabIndex: Int) {
+        let newViewController: UIViewController
+        switch tabIndex {
+        case 0:
+            let productsVC = instantiateViewController(named: "ProductsViewController") as! ProductsViewController
+            productsVC.viewModel = self.viewModel
+            newViewController = productsVC
+        case 1:
+            newViewController = instantiateViewController(named: "ReviewsViewController")
+        case 2:
+            newViewController = instantiateViewController(named: "FollowersViewController")
+        default:
+            return
+        }
+        
+        if let currentVC = currentChildViewController {
+            transition(from: currentVC, to: newViewController)
+        } else {
+            addChild(newViewController)
+            containerView.addSubview(newViewController.view)
+            newViewController.view.frame = containerView.bounds
+            newViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            newViewController.didMove(toParent: self)
+            currentChildViewController = newViewController
+        }
+    }
+    
+    private func transition(from oldVC: UIViewController, to newVC: UIViewController) {
+        addChild(newVC)
+        newVC.view.frame = containerView.bounds.offsetBy(dx: containerView.frame.width, dy: 0)
+        containerView.addSubview(newVC.view)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            newVC.view.frame = self.containerView.bounds
+            oldVC.view.frame = self.containerView.bounds.offsetBy(dx: -self.containerView.frame.width, dy: 0)
+        }, completion: { _ in
+            oldVC.willMove(toParent: nil)
+            oldVC.view.removeFromSuperview()
+            oldVC.removeFromParent()
+            newVC.didMove(toParent: self)
+            self.currentChildViewController = newVC
+        })
+    }
+    
+    private func instantiateViewController(named name: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
+    }
+    
+    private func updateTabsUI(to tabIndex: Int) {
+        [productsButton, reviewsButton, followersButton].enumerated().forEach { index, button in
+            button.setTitleColor(index == tabIndex ? .redPrimary : .gray, for: .normal)
+        }
+        
+        let buttonWidth = view.frame.width / 3
+        let padding: CGFloat = 20
+        var leading = CGFloat(tabIndex) * buttonWidth
+        if tabIndex == 0 { leading += padding }
+        
+        underlineLeadingConstraint.constant = leading
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func presentLanguageSheet() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let languageVC = storyboard.instantiateViewController(withIdentifier: "LanguageSelectionViewController") as? LanguageSelectionViewController else {
+            return
+        }
+        
+        if #available(iOS 15.0, *) {
+            if let sheet = languageVC.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 40
+            }
+            present(languageVC, animated: true)
+        } else {
+            languageVC.modalPresentationStyle = .pageSheet
+            present(languageVC, animated: true)
+        }
     }
 }
 
-// MARK: - SearchField
+// MARK: - Search TextField Handling
 extension ProfileViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text, !keyword.isEmpty else { return true }
         viewModel.searchProducts(by: keyword)
@@ -229,22 +234,18 @@ extension ProfileViewController: UITextFieldDelegate {
     private func setupSearchFieldListener() {
         searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
-
+    
     @objc private func textFieldDidChange(_ textField: UITextField) {
         let text = textField.text ?? ""
-
-        if isSearchTextValid(text) {
+        
+        if viewModel.isSearchTextValid(text) {
             searchBtnBackgroundView.backgroundColor = .redPrimary
         } else {
             searchBtnBackgroundView.backgroundColor = .dimmedRed
         }
-
+        
         if text.isEmpty {
             viewModel.loadProducts()
         }
-    }
-
-    private func isSearchTextValid(_ text: String) -> Bool {
-        return !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
