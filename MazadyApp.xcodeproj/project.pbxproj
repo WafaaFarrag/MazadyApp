@@ -12,6 +12,11 @@
 		89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075822DBDD62000BD953A /* ReviewsViewController.swift */; };
 		89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075842DBDD6CC00BD953A /* FollowersViewController.swift */; };
 		89B075872DBDD77A00BD953A /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075862DBDD77A00BD953A /* ProductsViewController.swift */; };
+		89B0758A2DBDE2C200BD953A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075892DBDE2C200BD953A /* MainTabBarController.swift */; };
+		89B0758C2DBDE32C00BD953A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0758B2DBDE32C00BD953A /* HomeViewController.swift */; };
+		89B0758E2DBDE34000BD953A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0758D2DBDE34000BD953A /* SearchViewController.swift */; };
+		89B075902DBDE35800BD953A /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0758F2DBDE35800BD953A /* CartViewController.swift */; };
+		89B075922DBDE37100BD953A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075912DBDE37100BD953A /* MenuViewController.swift */; };
 		89B89A592DBBE4FF00040851 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B89A582DBBE4FF00040851 /* Tag.swift */; };
 		89B89A5B2DBBE52100040851 /* Advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B89A5A2DBBE52100040851 /* Advertisement.swift */; };
 		89B89A5D2DBBE54100040851 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B89A5C2DBBE54100040851 /* Product.swift */; };
@@ -85,6 +90,11 @@
 		89B075822DBDD62000BD953A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		89B075842DBDD6CC00BD953A /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		89B075862DBDD77A00BD953A /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		89B075892DBDE2C200BD953A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		89B0758B2DBDE32C00BD953A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		89B0758D2DBDE34000BD953A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		89B0758F2DBDE35800BD953A /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		89B075912DBDE37100BD953A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		89B89A582DBBE4FF00040851 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		89B89A5A2DBBE52100040851 /* Advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisement.swift; sourceTree = "<group>"; };
 		89B89A5C2DBBE54100040851 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -174,6 +184,18 @@
 				53F5B630C5A88AB276255140 /* Pods-MazadyAppUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		89B075882DBDE22E00BD953A /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				89B075892DBDE2C200BD953A /* MainTabBarController.swift */,
+				89B0758B2DBDE32C00BD953A /* HomeViewController.swift */,
+				89B0758D2DBDE34000BD953A /* SearchViewController.swift */,
+				89B0758F2DBDE35800BD953A /* CartViewController.swift */,
+				89B075912DBDE37100BD953A /* MenuViewController.swift */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 		89BC7B952DBCFD92009EC6C4 /* ViewControllers */ = {
@@ -360,6 +382,7 @@
 		89DD76C22DBBB67A00DA62D6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				89B075882DBDE22E00BD953A /* TabBarController */,
 				89DD76C32DBBB68600DA62D6 /* Profile */,
 			);
 			path = Modules;
@@ -682,6 +705,9 @@
 			files = (
 				89BC7B9F2DBD1160009EC6C4 /* AdvertisementCollectionViewCell.swift in Sources */,
 				89DD76E22DBBB83000DA62D6 /* ReachabilityManager.swift in Sources */,
+				89B0758A2DBDE2C200BD953A /* MainTabBarController.swift in Sources */,
+				89B0758C2DBDE32C00BD953A /* HomeViewController.swift in Sources */,
+				89B0758E2DBDE34000BD953A /* SearchViewController.swift in Sources */,
 				89BC7BAB2DBD8021009EC6C4 /* TagsHeaderView.swift in Sources */,
 				89DD76CC2DBBB73100DA62D6 /* AppEnvironment.swift in Sources */,
 				89BC7B992DBCFE14009EC6C4 /* ProductCollectionViewCell.swift in Sources */,
@@ -696,6 +722,7 @@
 				89E8EC7A2DBBBF5E00160B86 /* FetchUserProfileUseCase.swift in Sources */,
 				89BC7B942DBCE9B1009EC6C4 /* FetchTagsUseCase.swift in Sources */,
 				89B89A5D2DBBE54100040851 /* Product.swift in Sources */,
+				89B075902DBDE35800BD953A /* CartViewController.swift in Sources */,
 				89DD76D82DBBB7BD00DA62D6 /* APIManager.swift in Sources */,
 				89DD76882DBBB5A200DA62D6 /* AppDelegate.swift in Sources */,
 				89DD76D22DBBB78800DA62D6 /* BaseViewModel.swift in Sources */,
@@ -707,6 +734,7 @@
 				89E8EC7E2DBBBF8200160B86 /* ProfileViewController.swift in Sources */,
 				89B89A5B2DBBE52100040851 /* Advertisement.swift in Sources */,
 				89BC7B922DBCE9A0009EC6C4 /* FetchAdsUseCase.swift in Sources */,
+				89B075922DBDE37100BD953A /* MenuViewController.swift in Sources */,
 				89BC7B9C2DBD0CAF009EC6C4 /* ImageView+Extensions.swift in Sources */,
 				89DD76DC2DBBB7E700DA62D6 /* NetworkError.swift in Sources */,
 				89DD76DA2DBBB7D300DA62D6 /* APITarget.swift in Sources */,

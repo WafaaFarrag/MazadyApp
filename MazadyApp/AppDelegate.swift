@@ -18,24 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-        let profileVM = AppDIContainer.shared.makeProfileViewModel()
 
+        // Setup MainTabBarController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {
-            fatalError("Could not instantiate ProfileViewController from Storyboard.")
+        guard let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
+            fatalError("Could not instantiate MainTabBarController from Storyboard.")
         }
-
-        // Inject ViewModel
-        profileVC.configure(with: profileVM)
-
-        // Setup Navigation Controller
-        let navVC = UINavigationController(rootViewController: profileVC)
-
-        window.rootViewController = navVC
+        
+        window.rootViewController = mainTabBarController
         window.makeKeyAndVisible()
 
         return true
     }
+
 
 
 
