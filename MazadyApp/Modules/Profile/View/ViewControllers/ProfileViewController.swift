@@ -35,6 +35,8 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var underlineLeadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var searchIconImageView: UIImageView!
+    @IBOutlet weak var settingsButton: UIButton!
     // MARK: - Properties
     var viewModel: ProfileViewModel!
     private let disposeBag = DisposeBag()
@@ -69,6 +71,17 @@ class ProfileViewController: BaseViewController {
     // MARK: - Setup
     private func setupView() {
         updateTexts()
+        
+        if UIView.userInterfaceLayoutDirection(for: view.semanticContentAttribute) == .rightToLeft {
+            settingsButton.semanticContentAttribute = .forceRightToLeft
+            settingsButton.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
+            searchIconImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+        } else {
+            settingsButton.semanticContentAttribute = .forceLeftToRight
+            settingsButton.imageView?.transform = .identity
+            searchIconImageView.transform = .identity
+        }
+
         NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
         searchTextField.delegate = self
         setupSearchFieldListener()
@@ -95,8 +108,9 @@ class ProfileViewController: BaseViewController {
                 self.nameLabel.text = user.name
                 self.userNameLabel.text = user.userName
                 self.locationLabel.text = "\(user.countryName), \(user.cityName)"
-                self.followersCountLabel.text = "\(user.followersCount)"
-                self.followingCountLabel.text = "\(user.followingCount)"
+
+                followersCountLabel.text = user.followersCount.localizedString()
+                followingCountLabel.text = user.followingCount.localizedString()
                 
                 if let imageUrl = user.image, let url = URL(string: imageUrl) {
                     DispatchQueue.global().async {
@@ -191,8 +205,18 @@ class ProfileViewController: BaseViewController {
         
         let buttonWidth = view.frame.width / 3
         let padding: CGFloat = 20
-        var leading = CGFloat(tabIndex) * buttonWidth
-        if tabIndex == 0 { leading += padding }
+        let isRTL = UIView.userInterfaceLayoutDirection(for: view.semanticContentAttribute) == .rightToLeft
+
+        var leading: CGFloat
+        if isRTL {
+            leading = (view.frame.width - (CGFloat(tabIndex + 1) * buttonWidth)) + (tabIndex == 2 ? -padding : 0)
+        } else {
+            leading = CGFloat(tabIndex) * buttonWidth + (tabIndex == 0 ? padding : 0)
+        }
+
+        underlineLeadingConstraint.constant = leading
+        UIView.animate(withDuration: 0.3) { self.view.layoutIfNeeded() }
+
         
         underlineLeadingConstraint.constant = leading
         

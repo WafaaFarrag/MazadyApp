@@ -18,6 +18,7 @@
 "daysShort" = "ي"; // يوم
 "hoursShort" = "س"; // ساعة
 "minutesShort" = "د"; // دقيقة
+"topTagsHeader" = "أفضل العلامات";
 
 // store
 "welcomeToStore" = "مرحبًا بك في المتجر!";
@@ -45,3 +46,5 @@
 // Tab Bar Items
 "cartTab" = "السلة";
 "profileTab" = "الملف الشخصي";
+
+

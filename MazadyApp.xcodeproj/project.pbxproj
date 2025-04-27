@@ -12,6 +12,7 @@
 		89A2128D2DBE2ACB0098A4E2 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89A2128F2DBE2ACB0098A4E2 /* ProductCollectionViewCell.xib */; };
 		89A212962DBE2B9F0098A4E2 /* Bundle+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */; };
 		89A2129F2DBE47720098A4E2 /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */; };
+		89A212A12DBE4EC90098A4E2 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */; };
 		89B075832DBDD62000BD953A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075822DBDD62000BD953A /* ReviewsViewController.swift */; };
 		89B075852DBDD6CC00BD953A /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075842DBDD6CC00BD953A /* FollowersViewController.swift */; };
 		89B075872DBDD77A00BD953A /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B075862DBDD77A00BD953A /* ProductsViewController.swift */; };
@@ -101,6 +102,7 @@
 		89A212942DBE2AF10098A4E2 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ProductCollectionViewCell.strings; sourceTree = "<group>"; };
 		89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Language.swift"; sourceTree = "<group>"; };
 		89A2129E2DBE47720098A4E2 /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
+		89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		89B075822DBDD62000BD953A /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		89B075842DBDD6CC00BD953A /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		89B075862DBDD77A00BD953A /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				89BC7B9B2DBD0CAF009EC6C4 /* ImageView+Extensions.swift */,
 				89B075A32DBE221200BD953A /* String+Extensions.swift */,
 				89A212952DBE2B9F0098A4E2 /* Bundle+Language.swift */,
+				89A212A02DBE4EC90098A4E2 /* Int+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				89A2129F2DBE47720098A4E2 /* ProfileSectionModel.swift in Sources */,
 				89B075A42DBE221200BD953A /* String+Extensions.swift in Sources */,
 				89B0759D2DBE1B0000BD953A /* LanguageCell.swift in Sources */,
+				89A212A12DBE4EC90098A4E2 /* Int+Extensions.swift in Sources */,
 				89DD76DE2DBBB7FD00DA62D6 /* SwiftMessagesService.swift in Sources */,
 				89E8EC762DBBBF3E00160B86 /* User.swift in Sources */,
 			);

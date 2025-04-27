@@ -355,7 +355,9 @@
                         <outlet property="profileImageView" destination="3GV-Q9-7hN" id="e8N-Ro-LAk"/>
                         <outlet property="reviewsButton" destination="DLZ-LI-zW4" id="FJr-VI-GgM"/>
                         <outlet property="searchBtnBackgroundView" destination="v25-bf-Qmd" id="9jJ-me-4xf"/>
+                        <outlet property="searchIconImageView" destination="4oA-PJ-O2t" id="jq5-fs-nCg"/>
                         <outlet property="searchTextField" destination="FdY-NG-bqd" id="Fmx-yU-JuA"/>
+                        <outlet property="settingsButton" destination="e9x-5k-KNf" id="jao-Yp-dWK"/>
                         <outlet property="underlineLeadingConstraint" destination="tbB-Fc-2v5" id="P9c-U3-6zw"/>
                         <outlet property="underlineView" destination="PuT-Bc-b3N" id="rar-25-zKp"/>
                         <outlet property="userNameLabel" destination="BhG-S2-kJP" id="WeE-63-NJ9"/>
@@ -533,7 +535,7 @@
             <color red="0.21176470588235294" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dimmedRedColor">
-            <color red="0.82352941176470584" green="0.023529411764705882" blue="0.32549019607843138" alpha="0.44999987840652467" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.82352941176470584" green="0.023529411764705882" blue="0.32549019607843138" alpha="0.44999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="grayTextScondColor">
             <color red="0.6588235294117647" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
